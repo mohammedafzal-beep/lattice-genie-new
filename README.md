@@ -45,9 +45,11 @@ Lattice Genie is an interactive Streamlit-based application for generating, visu
    pip install -r req.txt
    ```
 
-3. **Populate 'def' and 'crystal_img' folders**
-   Run 'gen_all_files.py' in 'utils' folder
-
+3. **Populate def/ and crystal_img/ folders**
+   ```sh
+   python run 'utils/gen_all_files.py'
+   ```
+   
 4. **Run the app:**
    ```sh
    streamlit run main.py
