@@ -3,7 +3,7 @@ import json
 from openai import OpenAI
 from components.parameter_ui import show_parameter_sliders
 
-client = OpenAI(api_key='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')
+client = OpenAI(api_key='***')
 def handle_user_input(data):
     if 'messages' not in st.session_state:
         st.session_state['messages'] = []
