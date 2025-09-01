@@ -1,9 +1,7 @@
 import streamlit as st
 import json
 from openai import OpenAI
-from components.parameter_ui import show_parameter_sliders
-
-client = OpenAI(api_key='***')
+client = OpenAI(api_key='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')
 def handle_user_input(data):
     if 'messages' not in st.session_state:
         st.session_state['messages'] = []
@@ -114,7 +112,8 @@ def process_assistant_response(assistant_msg, params_dict):
             pass
 
     if confirmed:
-        msg_to_display = "⬇️ Make sure to download the STL before proceeding to newer generation. " \
+        msg_to_display = "Generation may take a few seconds. \n" \
+        "⬇️ Make sure to download the STL before proceeding to newer generation. \n" \
         "To generate a new structure, type anything in the chat and hit 'Enter'."
     else:
         msg_to_display = assistant_msg

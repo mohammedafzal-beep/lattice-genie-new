@@ -23,14 +23,12 @@ def show_parameter_sliders(data):
 
 
         st.session_state['last_params'] = current_params.copy()
-        stl_path = generate_stl(dict_key, current_params)
-        stl_path_str=str(stl_path)
-        st.session_state['stl_path'] = stl_path
-    st.markdown("<div class='center'><h3>🧱 Generated STL Structure</h3></div>", unsafe_allow_html=True)
+        st.session_state['stl_path'] = generate_stl(dict_key, current_params)
+       
     stl_from_file(st.session_state['stl_path'],st.session_state.get('stl_color', '#336fff'), 
                 auto_rotate=True, width=700, height=500,cam_distance=100*(current_params['resolution']/50),cam_h_angle=45,cam_v_angle=75)
     col = st.columns([1, .2, 1])[1]
     with col:
-        with open(stl_path, "rb") as f:
-            st.download_button("⬇️ Download STL", data=f.read(), file_name=stl_path, mime="model/stl")
+        with open(st.session_state['stl_path'], "rb") as f:
+            st.download_button("⬇️ Download STL", data=f.read(), file_name=st.session_state['stl_path'], mime="model/stl")
     
