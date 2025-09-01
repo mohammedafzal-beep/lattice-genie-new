@@ -8,16 +8,19 @@ def render_home(data):
     st.markdown("""
     <div class='center'>
       <h1>Lattice Genie</h1>
-      <p>Generate lattice structures via simple chat interface and preview STL.</p>
+      <h3 class='center unbold'>Generate lattice structures via simple chat interface and preview STL.</h3>
     </div>
                 <style>
   .center { text-align: center; }
+    .unbold { font-weight: normal !important; }
   .stDownloadButton button { display: block; margin-left: auto; margin-right: auto; }
 </style>
     """, unsafe_allow_html=True)
     display_thumbnails(data["crystal_images"])
     st.markdown("---")
-    st.markdown("<div class='center'><h3>💬 Ask to configure lattice:</h3></div>", unsafe_allow_html=True)
+    st.markdown("<div class='center'><h2 >💬 Ask to configure lattice:</h2></div>", unsafe_allow_html=True)
+    spacing_html = "<br>"
+    st.markdown(spacing_html, unsafe_allow_html=True)
     handle_user_input(data)
     if st.session_state.get("confirmed_params"):
         show_parameter_sliders(data)
@@ -30,4 +33,4 @@ def display_thumbnails(images):
                 show_stl_thumbnail_home(name, img_path)
             except:
                 st.error(f"Couldn't load {name} image.")
-            st.markdown(f"<p style='text-align:center;font-weight:bold'>{name}</p>", unsafe_allow_html=True)
+            st.markdown(f"<h3 style='text-align:center;font-weight: normal !important;'>{name}</h3>", unsafe_allow_html=True)

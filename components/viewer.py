@@ -28,7 +28,7 @@ def show_stl_thumbnail_page(name, img_path, page=None):
     display = stl_from_file(
         img_path[0], color='#336fff', auto_rotate=True,
         cam_distance=cam_distance, max_view_distance=1500,
-        width=150, height=150,cam_h_angle=45,cam_v_angle=75
+        width=300, height=300,cam_h_angle=45,cam_v_angle=75
     )
     backup(display, img_path)
 
@@ -46,6 +46,6 @@ def show_stl_thumbnail_home(name, img_path, page=None):
     display = stl_from_file(
         img_path[0], color='#336fff', auto_rotate=True,
         cam_distance=cam_distance, max_view_distance=1500,
-        width=150, height=150,cam_h_angle=45,cam_v_angle=75
+        width=300, height=300,cam_h_angle=45,cam_v_angle=75
     )
     backup(display, img_path)
