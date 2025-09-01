@@ -117,4 +117,4 @@ def Tetra_BCC(a,b,c,r,center_atom_radius=0.5,resolution=50, folder='all_files'):
    
     verts, faces = generate_solid_volume(resolution, atom_positions, T, r, center_atom_radius, a, b, c, plane_equation)
     create_stl_from_mesh(verts, faces, folder, filename) 
-    return f'{folder}\\{filename}'
+    return cached_file

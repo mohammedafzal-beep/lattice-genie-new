@@ -11,8 +11,7 @@ def run_app():
     nav_bar()
     data = load_data()
     reset_home_flag()
-    page = st.sidebar.radio("Go to", data["pages"], key="current_page")
-    
+    page = st.sidebar.radio('', data["pages"], key="current_page")
     atexit.register(cleanup_stl_files)
     if page == "Home":
         render_home(data)

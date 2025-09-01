@@ -116,4 +116,4 @@ def Inverse_Rhombo(a, b, c, r, alpha, beta, gamma,    resolution = 200, folder='
 
     verts, faces = generate_solid_volume(resolution, atom_positions, T, r, a, b, c, plane_equation)
     create_stl_from_mesh(verts, faces, folder, filename) 
-    return f'{folder}\\{filename}'
+    return cached_file

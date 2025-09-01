@@ -50,7 +50,7 @@ def Skeletal_Primitive(C,    resolution = 200, folder='all_files'):
     
     verts, faces = generate_solid_volume(size, resolution, scale, C,)
     create_stl_from_mesh(verts, faces, folder, filename) 
-    return f'{folder}\\{filename}'
+    return cached_file
     
         
         

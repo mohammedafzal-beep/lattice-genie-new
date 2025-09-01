@@ -13,7 +13,30 @@ def render_generic_page(page, data):
     page_data = data["subtypes_info"].get(page)
     if page_data:
         st.markdown(f"<h3 class='center unbold'>{page_data['description']}</h3>", unsafe_allow_html=True)
-    col = st.columns([1, .18, 1])[1]
+    st.markdown("""
+<style>
+/* Style the button itself */
+div.stButton > button {
+    width: 200px !important;       /* button width */
+    height: 50px !important;       /* button height */
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Style the text inside the button (covers span/div children) */
+div.stButton > button * {
+    font-size: 24px !important;    /* 🔑 control text size */
+    font-weight: bold !important;
+    white-space: nowrap !important; /* keep it on one line */
+}
+</style>
+""", unsafe_allow_html=True)
+
+
+
+    col = st.columns([1, .22, 1])[1]
     with col:
         if st.button("⬅ Back to Home"):
             st.session_state.go_home = True

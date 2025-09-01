@@ -121,9 +121,6 @@ def Inverse(r,    resolution = 200, folder='all_files'):
     filename = f"15Inverse_{r:.2f}_{resolution}.stl"
     cached_file = os.path.join(folder, filename) 
 
-    if os.path.exists(cached_file): 
-        return cached_file 
-    else: 
-        verts, faces = generate_solid_volume(resolution, atom_positions, T, r, 1,1,1, plane_equation)
-        create_stl_from_mesh(verts, faces, folder, filename) 
-        return f'{folder}\\{filename}'
+    verts, faces = generate_solid_volume(resolution, atom_positions, T, r, 1,1,1, plane_equation)
+    create_stl_from_mesh(verts, faces, folder, filename) 
+    return cached_file

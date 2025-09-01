@@ -115,4 +115,4 @@ def Truss_FBCCXYZ(a=1.,b=1.,c=1.,alpha=90,beta=90,gamma=90,d=0.05,resolution = 2
 
     verts, faces = generate_solid_volume(max(T.flatten()), resolution, vertices, d)
     create_stl_from_mesh(verts, faces, folder, filename) 
-    return f'{folder}\\{filename}'
+    return cached_file

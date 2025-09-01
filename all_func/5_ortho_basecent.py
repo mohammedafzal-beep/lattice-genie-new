@@ -134,4 +134,4 @@ def Ortho_BaseCent(a,b,c,face_atom_radius=0.37,r=0.47,resolution = 50, folder='a
 
     verts, faces = generate_solid_volume(resolution, atom_positions, T, r, face_atom_radius, a, b, c, plane_equation)
     create_stl_from_mesh(verts, faces, folder, filename) 
-    return f'{folder}\\{filename}'
+    return cached_file

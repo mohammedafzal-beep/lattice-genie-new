@@ -651,7 +651,7 @@
             "step": 0.01
         },
         "resolution": {
-            "default": 50,
+            "default": 100,
             "min": 30,
             "max": 200,
             "step": 1

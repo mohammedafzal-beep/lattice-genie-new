@@ -100,4 +100,4 @@ def Inverse_Hexa(a, b, c, r=0.75, alpha=90, beta=90, gamma=120,    resolution = 
 
     verts, faces = generate_solid_volume(resolution, atom_positions, T, r, a, b, c, plane_equation)
     create_stl(verts, faces, folder, filename) 
-    return f'{folder}\\{filename}'
+    return cached_file

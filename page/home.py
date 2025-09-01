@@ -8,7 +8,7 @@ def render_home(data):
     st.markdown("""
     <div class='center'>
       <h1>Lattice Genie</h1>
-      <h3 class='center unbold'>Generate lattice structures via simple chat interface and preview STL.</h3>
+      <h5 class='center unbold'>Lattice Genie can generate lattice structures based on parameters</h5>
     </div>
                 <style>
   .center { text-align: center; }
@@ -18,11 +18,12 @@ def render_home(data):
     """, unsafe_allow_html=True)
     display_thumbnails(data["crystal_images"])
     st.markdown("---")
-    st.markdown("<div class='center'><h2 >💬 Ask to configure lattice:</h2></div>", unsafe_allow_html=True)
-    spacing_html = "<br>"
-    st.markdown(spacing_html, unsafe_allow_html=True)
-    handle_user_input(data)
-    if st.session_state.get("confirmed_params"):
+    st.markdown("<div class='center' style='margin-bottom:5px;'><h2 >💬 Ask to configure lattice:</h2></div>", unsafe_allow_html=True)
+   
+
+    with st.container():
+      handle_user_input(data)
+      if st.session_state.get("confirmed_params"):
         show_parameter_sliders(data)
 
 def display_thumbnails(images):
@@ -34,3 +35,7 @@ def display_thumbnails(images):
             except:
                 st.error(f"Couldn't load {name} image.")
             st.markdown(f"<h3 style='text-align:center;font-weight: normal !important;'>{name}</h3>", unsafe_allow_html=True)
+            """if st.button(name,key=f'btn_{name}'):
+              st.session_state.current_page = name
+              st.rerun()
+"""

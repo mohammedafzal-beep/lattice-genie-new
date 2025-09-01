@@ -66,6 +66,7 @@ def labeled_slider(param_key, cfg, current_params):
     "beta":               "β",
     "gamma":              "γ",
     "face_atom_radius":   "face atom radius",
+    
     "center_atom_radius": "center atom radius",
     "resolution":         "Resolution"
 }
@@ -83,7 +84,7 @@ def labeled_slider(param_key, cfg, current_params):
         'alpha': 'Angle between b and c',
         'beta': 'Angle between a and c',
         'gamma': 'Angle between a and b',
-        'fcc_atom_radius': 'Radius of atoms at face centers in FCC',
+        'face_atom_radius': 'Radius of atoms at face centers in FCC',
         'centre_atom_radius': 'Radius of center atom in BCC',
         'resolution': 'Decrease res for faster gen'
     }
@@ -91,7 +92,7 @@ def labeled_slider(param_key, cfg, current_params):
     # Render label with unit and tooltip
     unit = unit_map.get(param_key, "")
     display_key = greek_map.get(param_key, param_key)
-    label = f"**{display_key} ({unit})**" if unit else display_key
+    label = f"**{display_key} ({unit})**" if unit else f"**{display_key}**"
     help_text = descriptions_dict.get(param_key, "")
 
     # Handle dynamic range functions (e.g., t depends on C)
@@ -141,7 +142,7 @@ def dynamic_import(folder_name: str, module_name: str, variable_name: str):
     module_path = f"{folder_name}.{module_name}"
     module = importlib.import_module(module_path)
     return getattr(module, variable_name)
-
+"""
 # --- Initialize session state for the app ---
 def init_state():
     if 'messages' not in st.session_state:
@@ -151,7 +152,7 @@ def init_state():
     if 'stl_path' not in st.session_state:
         st.session_state['stl_path'] = None
     if 'last_assistant_msg' not in st.session_state:
-        st.session_state['last_assistant_msg'] = None
+        st.session_state['last_assistant_msg'] = None"""
 
 # --- Generate STL file using structure-specific generation function ---
 def generate_stl(dict_key, params):
@@ -175,25 +176,25 @@ def generate_stl(dict_key, params):
         61: "Truss_Octa", 62: "Truss_FBCCZ", 63: "Truss_FBCCXYZ",
     }
 
-    try:
-        func_name = func_dict.get(int(dict_key))
-        if not func_name:
-            st.error("Invalid structure key.")
-            return None
+    #try:
+    func_name = func_dict.get(int(dict_key))
+    """if not func_name:
+        st.error("Invalid structure key.")
+        return None"""
+    # Import the structure function dynamically from its module
+    func = dynamic_import('all_func', f'{dict_key}_' + func_name.lower(), func_name)
+    filepath = func(**params)
+    return filepath
 
-        # Import the structure function dynamically from its module
-        func = dynamic_import('all_func', f'{dict_key}_' + func_name.lower(), func_name)
-        filepath = func(**params)
-
-        if not filepath or not os.path.isfile(filepath):
+    """if not filepath or not os.path.isfile(filepath):
             st.error(f"STL generation failed or file not found: {filepath}")
-            return None
+            return None"""
 
-        return filepath
+        
 
-    except Exception as e:
-        st.error(f"Error in generate_stl(): {e}")
-        return None
+    #except Exception as e:
+        #st.error(f"Error in generate_stl(): {e}")
+        #return None
 
 
 

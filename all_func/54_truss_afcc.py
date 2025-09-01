@@ -94,4 +94,4 @@ def Truss_AFCC(d=0.05,   resolution = 200, folder='all_files'):
     else: 
         verts, faces = generate_solid_volume(max(T.flatten()), resolution, edges, d)
         create_stl_from_mesh(verts, faces, folder, filename) 
-        return f'{folder}\\{filename}'
+        return cached_file

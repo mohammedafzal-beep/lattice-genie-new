@@ -127,9 +127,9 @@ def Inverse_BCC(r,center_atom_radius=0.4,    resolution = 200, folder='all_files
         normal_vector, D = plane_from_points(*vertices)
         plane_equation[face_name] = (normal_vector, D)
 
-    filename = f"17Inverse_FCC_{r:.2f}_{center_atom_radius:.2f}_{resolution}.stl"
+    filename = f"17Inverse_BCC_{r:.2f}_{center_atom_radius:.2f}_{resolution}.stl"
     cached_file = os.path.join(folder, filename) 
 
     verts, faces = generate_solid_volume(resolution, atom_positions, T, r, center_atom_radius, a, b, c, plane_equation)
     create_stl_from_mesh(verts, faces, folder, filename) 
-    return f'{folder}\\{filename}'
+    return cached_file

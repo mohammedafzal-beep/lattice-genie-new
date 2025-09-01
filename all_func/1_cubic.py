@@ -113,9 +113,10 @@ def Cubic(r,resolution = 50, folder='all_files'):
         plane_equation[face_name] = (normal_vector, D)
 
     filename = f"1Cubic_{r:.2f}_{resolution}.stl" 
-    cached_file = os.path.join(folder, filename) 
+    
 
     verts, faces = generate_solid_volume(resolution, atom_positions, T, r, a, b, c, plane_equation)
     create_stl_from_mesh(verts, faces, folder, filename) 
-    return f'{folder}\\{filename}'
+    cached_file = os.path.join(folder, filename) 
+    return cached_file
     
