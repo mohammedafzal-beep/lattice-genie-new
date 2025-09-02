@@ -11,7 +11,7 @@ func_dict = {
     5: "Ortho_BaseCent", 6: "Ortho_FCC", 7: "Ortho_BCC", 8: "Tetra",
     9: "Tetra_BCC", 10: "Mono", 11: "Mono_BaseCent", 12: "Triclinic",
     13: "Rhombo", 14: "Hexa", 15: "Inverse", 16: "Inverse_FCC",
-    17: "Inverse_BCC", 18: "Inverse_Cubic_Ortho", 19: "Inverse_Ortho_BaseCent", 
+    17: "Inverse_BCC", 18: "Inverse_Cubic_Ortho", 19: "Inverse_Ortho_BaseCent", 20:"Inverse_Ortho_FCC",
     21: "Inverse_Ortho_BCC", 22: "Inverse_Tetra", 23: "Inverse_Tetra_BCC", 24: "Inverse_Mono",
     25: "Inverse_Mono_BaseCent", 26: "Inverse_Triclinic", 27: "Inverse_Rhombo", 28: "Inverse_Hexa",
     29: "Sheet_Primitive", 30: "Sheet_Gyroid", 31: "Sheet_Diamond", 32: "Sheet_IWP",

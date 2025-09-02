@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 from openai import OpenAI
-client = OpenAI(api_key='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')
+client=OpenAI(api_key='***') # Replace with your OpenAI API key
 def handle_user_input(data):
     if 'messages' not in st.session_state:
         st.session_state['messages'] = []
@@ -78,7 +78,7 @@ div[data-testid="stChatMessage"] span {
             # Call OpenAI
             messages = [{'role': 'system', 'content': data['system_prompt']}] + st.session_state['messages']
             try:
-                resp = client.chat.completions.create(model='gpt-4.1-nano-2025-04-14', messages=messages, temperature=0)
+                resp = client.chat.completions.create(model='gpt-4o', messages=messages, temperature=0)
                 assistant_msg = resp.choices[0].message.content
             except Exception as e:
                 assistant_msg = f"OpenAI API Error: {e}"
