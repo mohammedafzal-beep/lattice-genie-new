@@ -27,9 +27,8 @@ def openai_api_key_handling():
         os.makedirs(".streamlit", exist_ok=True)
         with open(secrets_file, "w") as f:
             f.write(f'[default]\nOPENAI_API_KEY = "{api_key}"\n')
-            st.success("API key saved! Please rerun the app.")
+            print("API key saved! Please rerun the app.")
 
-    
     return True
 
 
