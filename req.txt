@@ -1,3 +1,4 @@
+streamlit-stl
 streamlit
 scikit-image
 openai
