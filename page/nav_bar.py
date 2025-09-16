@@ -10,19 +10,19 @@ def nav_bar():
             .stAlert { display: none; }
             .center { text-align: center; }
             section[data-testid="stSidebar"] * {
-                font-size: 1.7rem;
+                font-size: 1.2rem;
             }
             /* Reduce gap above and below the horizontal rule */
             section[data-testid="stSidebar"] hr {
-                margin-top: 0.7em;
-                margin-bottom: 0.7em;
+                margin-top: 0.5em;
+                margin-bottom: 0.5em;
             }
             section[data-testid="stSidebar"] div[role="radiogroup"] > label {
     display: flex !important;          /* make label and radio inline-flex */
     align-items: center !important;    /* vertical align text with radio circle */
-    gap: 8px !important;               /* horizontal gap between circle and text */
-    margin-bottom: 4px !important;     /* reduce vertical spacing between options */
-    font-size: 1.7rem !important;      /* match your other sidebar font size */
+    gap: 5px !important;               /* horizontal gap between circle and text */
+    margin-bottom: 3px !important;     /* reduce vertical spacing between options */
+    font-size: 1.2rem !important;      /* match your other sidebar font size */
 }
         </style>
         """,

@@ -62,13 +62,22 @@ def labeled_slider(param_key, cfg, current_params):
 
     # Display names (Greek where applicable)
     greek_map = {
-    "alpha":              "α",
-    "beta":               "β",
-    "gamma":              "γ",
+    'alpha': 'Angle between b and c',
+    'beta': 'Angle between a and c',
+    'gamma': 'Angle between a and b',
     "face_atom_radius":   "face atom radius",
-    
+    'a': 'Lattice constant a',
+    'b': 'Lattice constant b',
+    'c': 'Lattice constant c',
+    'C': 'Level set constant',
+    't': 'Sheet thickness',
+    'd': 'Distance between two sheets',
+    'r': 'Atomic radius',
+    'alpha': 'Angle between b and c',
+    'beta': 'Angle between a and c',
+    'gamma': 'Angle between a and b',
     "center_atom_radius": "center atom radius",
-    "resolution":         "Resolution"
+    "resolution": "Resolution"
 }
 
 
