@@ -69,6 +69,8 @@ def call_function(key, func_name, file_path, raw_params, folder_value):
     # Extract defaults
     flat_params = extract_defaults(raw_params)
 
+    if key==2:
+        flat_params["r"] = 0.45  # Override radius to 0.65
     # Override resolution to 200
     flat_params["resolution"] = 200
 

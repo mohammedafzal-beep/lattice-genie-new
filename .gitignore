@@ -7,3 +7,4 @@ test.py
 def/
 crystal_img/
 *.stl
+.streamlit/

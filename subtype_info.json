@@ -13,7 +13,7 @@
             [
                 "Face-Centered Cubic",
                 [
-                    "./def/2Cubic_FCC_0.50_200.stl",
+                    "./def/2Cubic_FCC_0.40_200.stl",
                     "./img/2bravais_FCC.jpg"
                 ],
                 "Provides excellent ductility and high fatigue resistance,          ideal for applications requiring substantial deformation without failure."
@@ -138,7 +138,7 @@
             [
                 "Body-Centered Cubic",
                 [
-                    "./def/17Inverse_FCC_0.50_0.40_200.stl",
+                    "./def/17Inverse_BCC_0.50_0.40_200.stl",
                     "./img/17invbravais_BCC.jpg"
                 ],
                 "Balances strength and ductility, exhibiting a notable temperature-dependent          behavior that influences its toughness and brittleness."

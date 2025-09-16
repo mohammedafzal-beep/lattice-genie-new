@@ -36,7 +36,7 @@ div.stButton > button * {
 
 
 
-    col = st.columns([1, .22, 1])[1]
+    col = st.columns([.91, .22, 1])[1]
     with col:
         if st.button("⬅ Back to Home"):
             st.session_state.go_home = True
