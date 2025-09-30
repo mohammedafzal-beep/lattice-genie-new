@@ -33,7 +33,7 @@ for key in func_dict:
     func_dict[key] = [val, new_path]
 
 # Keys to run twice with different folders
-run_twice_keys = {1, 17, 29, 36, 63}
+run_twice_keys = {1, 22, 29, 36, 63}
 
 # Folders to pass for those special cases
 alt_folders = ["./def", "./crystal_img"]
