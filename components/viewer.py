@@ -46,6 +46,6 @@ def show_stl_thumbnail_home(name, img_path, page=None):
     display = stl_from_file(
         img_path[0], color='#336fff', auto_rotate=True,
         cam_distance=cam_distance, max_view_distance=1500,
-        width=225, height=225,cam_h_angle=45,cam_v_angle=75
+        width=225, height=225,cam_h_angle=45,cam_v_angle=75,shininess=0.3
     )
     backup(display, img_path)
