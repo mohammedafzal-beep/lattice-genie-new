@@ -1,6 +1,7 @@
 import streamlit as st
 import json
 from openai import OpenAI
+from streamlit_stl import stl_from_file
 client=OpenAI(api_key='***') # Replace with your OpenAI API key
 def handle_user_input(data):
     if 'messages' not in st.session_state:
@@ -146,9 +147,9 @@ div[data-testid="stChatInput"] button {
 """, unsafe_allow_html=True)
     #cols = st.columns([1, 1, 1])
     #with cols[1]:
-    messages_container = st.container()
+    st.session_state['message_container'] = st.container()
     # Display existing messages
-    with messages_container:
+    with st.session_state['message_container']:
         for msg in st.session_state['messages']:
             st.chat_message(msg['role']).write(msg['content'])
 
@@ -157,17 +158,10 @@ div[data-testid="stChatInput"] button {
     user_input = st.chat_input('Ask Lattice Genie to generate a lattice structure.')
 
     if user_input:
-        # Reset if generating new STL
-        if st.session_state.get('stl_path'):
-            st.session_state['messages'] = []
-            st.session_state['confirmed_params'] = None
-            st.session_state['stl_path'] = None
-            st.session_state['last_assistant_msg'] = None
-            st.rerun()
 
         # Append and show user input immediately
         st.session_state['messages'].append({'role': 'user', 'content': user_input})
-        with messages_container:
+        with st.session_state['message_container']:
             st.chat_message('user').write(user_input)
             st.markdown("""
 <script>
@@ -331,8 +325,8 @@ div[data-testid="stChatInput"] button {
             .typing-dots {
                 display: flex;
                 justify-content: center;
-                margin-top: 70px;
-                margin-bottom: 60px;
+                margin-top: 65px;
+                margin-bottom: 65px;
             }
             .typing-dots .dot {
                 height: 14px;
@@ -353,7 +347,6 @@ div[data-testid="stChatInput"] button {
                 <div class="dot"></div>
             </div>
             """, unsafe_allow_html=True)
-
         # Call OpenAI
         messages = [{'role': 'system', 'content': data['system_prompt']}] + st.session_state['messages']
         try:
@@ -365,10 +358,12 @@ div[data-testid="stChatInput"] button {
         # Replace typing dots with assistant message
         typing_placeholder.empty()
         msg_to_display = process_assistant_response(assistant_msg, data["params_dict"])
-
-        # Now actually show the assistant’s clean message
-        with messages_container:
-            st.chat_message("assistant").write(msg_to_display)
+        if msg_to_display == 1:
+            pass
+        else:
+          with st.session_state['message_container']:
+              st.session_state["messages"].append({"role": "assistant", "content": msg_to_display})
+              st.chat_message("assistant").write(msg_to_display)
             
 
 
@@ -392,16 +387,10 @@ def process_assistant_response(assistant_msg, params_dict):
             pass
 
     if confirmed:
-        msg_to_display = "Generation may take a few seconds. \n" \
-        "⬇️ Make sure to download the STL before proceeding to newer generation. \n" \
-        "To generate a new structure, type anything in the chat and hit 'Enter'."
-        st.markdown("""<script>setTimeout(() => {
-      var chat = window.parent.document.querySelector('section.main');
-      if (chat) chat.scrollTop = chat.scrollHeight;
-    }, 300);</script>""", unsafe_allow_html=True)
+        return 1
     else:
-        msg_to_display = assistant_msg
+        return assistant_msg
 
-    st.session_state["messages"].append({"role": "assistant", "content": msg_to_display})
+    
     st.session_state["last_assistant_msg"] = msg_to_display
     return msg_to_display
