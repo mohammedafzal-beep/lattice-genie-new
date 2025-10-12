@@ -20,6 +20,7 @@ from PIL import Image
 from streamlit_stl import stl_from_file
 import streamlit.components.v1 as components
 import json
+from openai import OpenAI
 # --- Delete all STL files in the 'all_files/' directory to ensure a clean state before generation ---
 def cleanup_stl_files():
     for f in glob.glob("all_files/*.stl"):
@@ -33,6 +34,36 @@ def backup(display, img_path):
     if not display:
         st.image(Image.open(img_path[1]).resize((256, 256)), use_container_width=True)
 
+def openai_api_key_handling():
+  # ---------- OpenAI API Key Handling ----------
+  secrets_file = ".streamlit/secrets.toml"
+
+
+  if not os.path.exists(secrets_file):
+    
+    st.title("🔑 API Key Required")
+    st.warning(
+        "This is your first time running the app.\n\n"
+        "👉 Please enter your **OpenAI API key** in the terminal prompt.\n"
+        "After that, the key will be saved for future use."
+    )
+    api_key = st.text_input("🔑 Enter your OpenAI API key (first-time setup):", type="password")
+    if api_key:
+        client = OpenAI(api_key=api_key)
+        os.makedirs(".streamlit", exist_ok=True)
+        with open(secrets_file, "w") as f:
+            f.write(f'[default]\nOPENAI_API_KEY = "{api_key}"\n')
+        st.success("✅ API key saved! Please restart the Streamlit app.")
+        st.stop()
+    client=OpenAI(api_key=api_key)
+    # save it
+    os.makedirs(".streamlit", exist_ok=True)
+    with open(secrets_file, "w") as f:
+        f.write(f'[default]\nOPENAI_API_KEY = "{api_key}"\n')
+
+
+    print("✅ API key saved! Restart the Streamlit app.")
+    st.rerun()
 # --- Slider UI component that supports both static and C-dependent dynamic ranges ---
 def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=22, font_size_value=20,color="#ffffff",
                  slider_width=600,label_value_gap=10,confirm_selection=False):
@@ -67,6 +98,7 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
       "face_atom_radius": "Å", "center_atom_radius": "Å",
       "alpha": "°", "beta": "°", "gamma": "°", "resolution": ""
   }
+
 
 
 
@@ -412,15 +444,30 @@ def generate_stl(dict_key, params):
     filepath = func(**params)
     return filepath
 
-    """if not filepath or not os.path.isfile(filepath):
-            st.error(f"STL generation failed or file not found: {filepath}")
-            return None"""
+def subtype_selection_to_dict_key(data):
+    # data: full data dict from data.json
+      # returns dict_key for the selected type/subtype in session_state
+  subtypes_info = data.get("subtypes_info", {})
+  types = {}
+  global_count = 1
+  for type,subtypes_info in subtypes_info.items():
+      local_count= 0
+      subtype_list=subtypes_info['items']
+      
+      for local_count in range(len(subtype_list)):
+          subtype = subtype_list[local_count][0]
+          types.setdefault(type, {})[subtype] = global_count
+          local_count+=1
+          global_count+=1
+  type_list = list(types.keys()) if types else ['Unknown']
+  selected_type = st.selectbox('Structure type', type_list, index=0)
+  subtype_list = list(types.get(selected_type, {}).keys()) if types.get(selected_type) else ['Default']
+  selected_subtype = st.selectbox('Subtype', subtype_list, index=0)
 
-        
 
-    #except Exception as e:
-        #st.error(f"Error in generate_stl(): {e}")
-        #return None
-
-
+  # derive dict_key
+  dict_key = types[selected_type][selected_subtype]
+  st.session_state['selected_type'] = selected_type
+  st.session_state['selected_subtype'] = selected_subtype
+  st.session_state['selected_dict_key'] = dict_key
 

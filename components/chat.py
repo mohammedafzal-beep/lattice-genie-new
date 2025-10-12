@@ -391,6 +391,33 @@ def process_assistant_response(assistant_msg, params_dict):
     else:
         return assistant_msg
 
-    
-    st.session_state["last_assistant_msg"] = msg_to_display
-    return msg_to_display
+
+def append_user_message(text):
+   st.session_state.messages.append({'role': 'user', 'content': text})
+
+
+def append_assistant_message(text):
+   st.session_state.messages.append({'role': 'assistant', 'content': text})
+   st.session_state.last_assistant_msg = text
+
+
+ # --- Render chat ---
+def render_chat():
+    html = '<div class="chat-box">'
+    for msg in st.session_state['messages']:
+        if msg['role'] == 'user':
+            html += f'<div class="message user">{msg["content"]} <span class="avatar">🧑</span></div>'
+        else:
+            html += f'<div class="message assistant"><span class="avatar">🤖</span> {msg["content"]}</div>'
+    html += '</div>'
+    st.markdown(html, unsafe_allow_html=True)
+
+
+def call_openai_chat(system_prompt, messages, model='gpt-4o'):
+  client=OpenAI(api_key='***')
+  try:
+      resp = client.chat.completions.create(model=model, messages=messages, temperature=0)
+      return resp.choices[0].message.content
+  except Exception as e:
+      return f"OpenAI API Error: {e}"
+
