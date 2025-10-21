@@ -4,6 +4,11 @@ def init_state():
     defaults = {
         'current_page': 'Home',
         'go_home': False,
+        'go_Bravais': False,
+        'go_Inverse Bravais': False,
+        'go_Sheet TPMS': False,
+        'go_Skeletal TPMS': False,
+        'go_Strut-based': False,
         'messages': [],
         'confirmed_params': None,
         'stl_path': None,
@@ -19,11 +24,36 @@ def reset_home_flag():
         st.session_state.current_page = "Home"
         st.session_state.go_home = False
         st.rerun()
+    if st.session_state.go_Bravais:
+        st.session_state.current_page = "Bravais"
+        st.session_state.go_Bravais = False
+        st.rerun()
+    if st.session_state['go_Inverse Bravais']:
+        st.session_state.current_page = "Inverse Bravais"
+        st.session_state['go_Inverse Bravais'] = False
+        st.rerun()
+    if st.session_state['go_Sheet TPMS']:
+        st.session_state.current_page = "Sheet TPMS"
+        st.session_state['go_Sheet TPMS'] = False
+        st.rerun()
+    if st.session_state['go_Skeletal TPMS']:
+        st.session_state.current_page = "Skeletal TPMS"
+        st.session_state['go_Skeletal TPMS'] = False
+        st.rerun()
+    if st.session_state['go_Strut-based']:
+        st.session_state.current_page = "Strut-based"
+        st.session_state['go_Strut-based'] = False
+        st.rerun()
+
 
 
 def init_state_dropdown_version():
    defaults = {
-       
+       'go_Bravais': False,
+        'go_Inverse Bravais': False,
+        'go_Sheet TPMS': False,
+        'go_Skeletal TPMS': False,
+        'go_Strut-based': False,
        'api_key_configured': False,
        'current_page': 'Home',
         'go_home': False,

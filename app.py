@@ -1,8 +1,8 @@
 import streamlit as st
 from utils.dataloader import load_data
-from utils.session import init_state, reset_home_flag
+from utils.session import init_state, reset_home_flag,init_state_dropdown_version
 from utils.utils import cleanup_stl_files
-from page.home import render_home
+from page.home import render_home, render_home_dropdown_version
 from page.generic import render_generic_page
 from page.nav_bar import nav_bar
 import atexit
@@ -41,5 +41,17 @@ def run_app():
     atexit.register(cleanup_stl_files)
     if page == "Home":
         render_home(data)
+    else:
+        render_generic_page(page, data)
+
+def run_app_dropdown_version():
+    init_state_dropdown_version()
+    nav_bar()
+    data = load_data()
+    reset_home_flag()
+    page = st.sidebar.radio('', data["pages"], key="current_page")
+    atexit.register(cleanup_stl_files)
+    if page == "Home":
+        render_home_dropdown_version(data)
     else:
         render_generic_page(page, data)

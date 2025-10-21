@@ -4,7 +4,7 @@ def nav_bar():
     st.sidebar.markdown(
         """
        <div class='center'>
-            <p style='font-size:2rem; line-height:1.2; '>Navigation Bar</p>
+            <p style='font-size:1.7rem; line-height:1.2; '>Navigation Bar</p>
         </div>
         <style>
             .stAlert { display: none; }

@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_stl import stl_from_file
-def right_col():
+def right_column():
     st.markdown('<h3 style="display: flex; align-items: center; justify-content: center; margin-top: -20px; text-align:center;">📸 Preview </h3>', unsafe_allow_html=True)
 
         # If there's an STL path, preview; otherwise show sample for selected_dict_key
@@ -17,7 +17,7 @@ def right_col():
         # Download button
         try:
             with open(stl_path, 'rb') as f:
-                with st.columns([1.4, 1, 1])[1]:
+                with st.columns([1, 1, 1])[1]:
                     st.download_button('⬇️ Download STL', data=f.read(), file_name=stl_path, mime='model/stl')
         except Exception:
             st.warning('STL file not available for download. Generate again.')
@@ -26,7 +26,7 @@ def right_col():
         placeholder.markdown(
 """
 <div style="
-    width: 825px;
+    width: 525px;
     height:350px;
     border: 2px dashed #ccc;
     display: flex;

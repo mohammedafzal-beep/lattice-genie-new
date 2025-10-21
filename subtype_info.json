@@ -13,7 +13,7 @@
             [
                 "Face-Centered Cubic",
                 [
-                    "./def/2Cubic_FCC_0.40_200.stl",
+                    "./def/2Cubic_FCC_0.45_200.stl",
                     "./img/2bravais_FCC.jpg"
                 ],
                 "Provides excellent ductility and high fatigue resistance,          ideal for applications requiring substantial deformation without failure."
@@ -61,7 +61,7 @@
             [
                 "Simple Tetragonal",
                 [
-                    "./def/8Tetra_1.0_1.0_1.2_0.65_200.stl",
+                    "./def/8Tetra_1.0_1.2_0.65_200.stl",
                     "./img/8BRavais_SimpTetra.jpg"
                 ],
                 "Exhibits unique directional mechanical properties due to its two equal lateral          dimensions and a distinct vertical dimension, allowing for tailored stiffness and strength along the axis of          elongation."
@@ -69,7 +69,7 @@
             [
                 "Body-Centered Tetragonal",
                 [
-                    "./def/9Tetra__BCC_1.0_1.0_1.4_0.50_0.55_200.stl",
+                    "./def/9Tetra__BCC_1.0_1.4_0.50_0.55_200.stl",
                     "./img/9bravais_BCTetra.jpg"
                 ],
                 "Provides enhanced structural stability and potential for higher          strength due to the additional atom at the center of the unit cell, influencing the material's          response to compression and tension."
