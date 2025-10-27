@@ -4,14 +4,12 @@ from utils.utils import labeled_slider
 from utils.utils import generate_stl
 from streamlit_stl import stl_from_file
 def show_parameter_sliders(data):
-    
     with st.sidebar:
+        st.markdown("---")
+
         with st.columns([1,6,1])[1]:
-            st.markdown("---")
-            st.markdown(
-    "<h2 style=' color: #007BFF; font-size: 28px;'>Adjust parameters</h2>",
-    unsafe_allow_html=True
-    )
+            st.session_state['Adjust_parameters'] = st.empty()
+           
 
 
 # Reserve space for the button right under the heading
@@ -33,7 +31,8 @@ def show_parameter_sliders(data):
         if st.session_state["last_dict_key"] != dict_key:
             st.session_state["button_pressed"] = False
             st.session_state["last_dict_key"] = dict_key
-        with st.columns([1,2,1])[1]:
+       
+        with st.columns([2,6,1])[1]:
             button_placeholder = st.empty()
         schema = data["params_dict"].get(dict_key, 1)
         current_params = {}
@@ -109,7 +108,7 @@ def show_parameter_sliders(data):
         # HTML with red dot if button not pressed
         dot_html = f"""
 <div style="position: relative; display: inline-block; margin-bottom: 8px;">
-    <h4 style="margin:0;">{struc_name}</h4>
+    <h4 style="margin:0;">Adjust parameters</h4>
     {(
         "<span class='pulse-dot'></span>"
     ) if not button_pressed else ""}
@@ -117,7 +116,7 @@ def show_parameter_sliders(data):
 
 <style>
 .pulse-dot {{
-    position: relative;
+    position: absolute;
     top: 0;
     right: 0;
     height: 12px;
@@ -135,6 +134,15 @@ def show_parameter_sliders(data):
 }}
 </style>
 """
-    with st.session_state['struc_name_placeholder']:
+    with st.session_state['Adjust_parameters']:
 
         st.markdown(dot_html, unsafe_allow_html=True)
+    if st.session_state.get('stl_generated'):
+        st.success("STL generated successfully!", icon="✅")
+        st.session_state['spinner'].empty()  # Clear the message after displaying
+        stl_from_file(st.session_state['stl_path'],st.session_state.get('stl_color', '#336fff'), 
+                auto_rotate=True, width=700, height=500,cam_distance=100*(current_params['resolution']/50),cam_h_angle=45,cam_v_angle=75)
+        col = st.columns([1.2, .5, 1])[1]
+        with col:
+            with open(st.session_state['stl_path'], "rb") as f:
+                st.download_button("⬇️ Download STL", data=f.read(), file_name=st.session_state['stl_path'], mime="model/stl")

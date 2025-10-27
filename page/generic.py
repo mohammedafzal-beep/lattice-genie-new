@@ -6,6 +6,7 @@ def render_generic_page(page, data):
 <style>
 .center { text-align: center; }
 .unbold { font-weight: normal !important; }
+[data-testid='stHeaderActionElements'] {display: none;}
 </style>
 """, unsafe_allow_html=True)
     st.markdown(f"<h2 class='center'>{page}</h2>", unsafe_allow_html=True)

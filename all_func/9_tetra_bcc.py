@@ -2,8 +2,8 @@ import numpy as np
 from skimage import measure
 from stl import mesh
 import os
-def Tetra_BCC(a,b,c,r,center_atom_radius=0.5,resolution=50, folder='all_files'):
-    def Lattice_atom_positions(a, b, c, alpha, beta, gamma):
+def Tetra_BCC(a,c,r,center_atom_radius=0.5,resolution=50, folder='all_files'):
+    def Lattice_atom_positions(a, c, alpha, beta, gamma):
 
         alpha_rad = np.deg2rad(alpha)
         beta_rad = np.deg2rad(beta)
@@ -16,8 +16,8 @@ def Tetra_BCC(a,b,c,r,center_atom_radius=0.5,resolution=50, folder='all_files'):
             np.sqrt(1 - np.cos(beta_rad)**2 - ((np.cos(alpha_rad) - np.cos(beta_rad) * np.cos(gamma_rad)) / np.sin(gamma_rad))**2)]
         ])
         positions = [
-            [0, 0, 0], [a, 0, 0], [0, b, 0], [0, 0, c],
-            [a, b, 0], [a, 0, c], [0, b, c], [a, b, c], [(0.5*a), (0.5*b), (0.5*c)]
+            [0, 0, 0], [a, 0, 0], [0, a, 0], [0, 0, c],
+            [a, a, 0], [a, 0, c], [0, a, c], [a, a, c], [(0.5*a), (0.5*a), (0.5*c)]
         ]
         return [np.dot(pos, T) for pos in positions], T
 
@@ -35,14 +35,14 @@ def Tetra_BCC(a,b,c,r,center_atom_radius=0.5,resolution=50, folder='all_files'):
         a =  round(normal[0],5)*x + round(normal[1],5)*y + round(normal[2],5)*z +round(D,5)
         return np.round(a,3)
 
-    def generate_solid_volume(resolution, position, T, atom_radius, center_atom_radius, a, b, c, plane_equation):
+    def generate_solid_volume(resolution, position, T, atom_radius, center_atom_radius, a, c, plane_equation):
         v1 = atom_positions[1]
         v2 = atom_positions[2]
         v3 = atom_positions[3]
 
         u, v, w = np.meshgrid(
             np.linspace(0, 1, int(a * resolution)),
-            np.linspace(0, 1, int(b * resolution)),
+            np.linspace(0, 1, int(a * resolution)),
             np.linspace(0, 1, int(c * resolution)),
             indexing='ij'
         )
@@ -92,7 +92,7 @@ def Tetra_BCC(a,b,c,r,center_atom_radius=0.5,resolution=50, folder='all_files'):
     alpha, beta, gamma = 90.0, 90.0, 90.0 
     atom_radius_range = np.arange(0.55, 0.61, 0.01)  # Considered lower tolerance than 0.03 to generate atleast 4+ structures
     center_atom_radius_range = np.arange(0.45, 0.51, 0.01)  # Considered lower tolerance than 0.03 to generate atleast 4+ structures
-    atom_positions, T = Lattice_atom_positions(a, b, c, alpha, beta, gamma)
+    atom_positions, T = Lattice_atom_positions(a, c, alpha, beta, gamma)
 
     # Convert to numpy array for easier manipulation and define faces
     positions = np.array(atom_positions)
@@ -111,10 +111,10 @@ def Tetra_BCC(a,b,c,r,center_atom_radius=0.5,resolution=50, folder='all_files'):
         normal_vector, D = plane_from_points(*vertices)
         plane_equation[face_name] = (normal_vector, D)
 
-    filename = f"9Tetra__BCC_{a:.1f}_{b:.1f}_{c:.1f}_{center_atom_radius:.2f}_{r:.2f}_{resolution}.stl" 
+    filename = f"9Tetra__BCC_{a:.1f}_{c:.1f}_{center_atom_radius:.2f}_{r:.2f}_{resolution}.stl" 
     cached_file = os.path.join(folder, filename) 
 
    
-    verts, faces = generate_solid_volume(resolution, atom_positions, T, r, center_atom_radius, a, b, c, plane_equation)
+    verts, faces = generate_solid_volume(resolution, atom_positions, T, r, center_atom_radius, a, c, plane_equation)
     create_stl_from_mesh(verts, faces, folder, filename) 
     return cached_file

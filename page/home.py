@@ -6,7 +6,6 @@ from columns.left_col import left_column
 from columns.right_col import right_column
 from columns.nav_bar import navigation_bar
 def render_home(data):
-    
     st.markdown("""
     <div class='center'>
       <h1>✨ Lattice Genie</h1>
@@ -16,7 +15,10 @@ def render_home(data):
   .center { text-align: center; }
     .unbold { font-weight: normal !important; }
   .stDownloadButton button { display: block; margin-left: auto; margin-right: auto; }
+  [data-testid='stHeaderActionElements'] {display: none;}
+
 </style>
+
     """, unsafe_allow_html=True)
     display_thumbnails(data["crystal_images"])
     st.markdown("---")
@@ -25,6 +27,8 @@ def render_home(data):
 
     with st.container():
       handle_user_input(data)
+      if st.session_state.get("confirmed_params"):
+        show_parameter_sliders(data)
 
 def render_home_dropdown_version(data):
     
@@ -37,6 +41,8 @@ def render_home_dropdown_version(data):
   .center { text-align: center; }
     .unbold { font-weight: normal !important; }
   .stDownloadButton button { display: block; margin-left: auto; margin-right: auto; }
+  [data-testid='stHeaderActionElements'] {display: none;}
+
 </style>
     """, unsafe_allow_html=True)
     display_thumbnails(data["crystal_images"])

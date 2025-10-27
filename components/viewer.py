@@ -25,11 +25,11 @@ def show_stl_thumbnail_page(name, img_path, page=None):
     if page in cam_settings and name in cam_settings[page]:
         cam_distance = cam_settings[page][name]
 
-    display = stl_from_file(
+    '''display = stl_from_file(
         img_path[0], color='#336fff', auto_rotate=True,
         cam_distance=cam_distance, max_view_distance=1500,
         width=300, height=300,cam_h_angle=45,cam_v_angle=75
-    )
+    )'''
     backup(display, img_path)
 
 
@@ -43,35 +43,11 @@ def show_stl_thumbnail_home(name, img_path, page=None):
     if name in cam_settings.keys():
         cam_distance = cam_settings[name]
 
-    display = stl_from_file(
+    '''display = stl_from_file(
         img_path[0], color='#336fff', auto_rotate=True,
         cam_distance=cam_distance, max_view_distance=1500,
         width=225, height=225,cam_h_angle=45,cam_v_angle=75,shininess=0.3
-    )
+    )'''
     backup(display, img_path)
 
-
-
-def display_thumbnails_with_nav(images):
-   # images: dict {name: path}
-  
-   cols = st.columns(len(images) if images else 1)
-   for idx, (name, img_path) in enumerate(images.items()):
-       with cols[idx]:
-     
-               cam_settings = {
-       'Inverse Bravais': 320,
-       'Sheet TPMS': 320,
-   }
-
-
-               cam_distance = 400
-               if name in cam_settings.keys():
-                   cam_distance = cam_settings[name]
-               display = stl_from_file(
-       img_path[0], color='#336fff', auto_rotate=True,shininess=50,
-       cam_distance=cam_distance, max_view_distance=1500,
-      height=210,cam_h_angle=45,cam_v_angle=75
-   )
-  
 
