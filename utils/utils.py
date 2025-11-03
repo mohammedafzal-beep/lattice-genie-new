@@ -102,11 +102,7 @@ def surface_area_to_volume_ratio(stl_file_path):
     else:
         ratio = surface_area / volume
 
-    return {
-        "surface_area": surface_area,
-        "volume": volume,
-        "surface_area_to_volume_ratio": ratio
-    }
+    return ratio
 
 # Example usage:
 # result = surface_area_to_volume_ratio("example.stl")
@@ -136,7 +132,6 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
 0.5: (0.215, 0.285, 0.01), 0.51: (0.205, 0.275, 0.01), 0.52: (0.205, 0.255, 0.01), 0.53: (0.205, 0.245, 0.01), 0.54: (0.205, 0.225, 0.01), 0.55: (0.205, 0.215, 0.01), 0.56: (0.205, 0.205, 0.01)}
     return radius_range_map[r]
 
-  def S_V_ratio(): return 0
   RANGE_FUNC_MAP = {
       "t_range_func_C29": t_range_func_C29,
       "t_range_func_C30": t_range_func_C30,
