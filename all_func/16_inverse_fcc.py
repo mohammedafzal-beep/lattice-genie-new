@@ -2,7 +2,7 @@ import numpy as np
 from skimage import measure
 from stl import mesh
 import os
-def Inverse_FCC(r,face_atom_radius=0.355,    resolution = 200, folder='all_files'):
+def Inverse_FCC(r,face_atom_radius, resolution = 200, folder='all_files'):
     def Lattice_atom_positions(a, b, c, alpha, beta, gamma):
 
         alpha_rad = np.deg2rad(alpha)

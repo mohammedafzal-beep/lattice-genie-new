@@ -2,7 +2,7 @@ import numpy as np
 from skimage import measure 
 from stl import mesh 
 import os 
-def Cubic_BCC(r,resolution = 50, folder='all_files'): 
+def Cubic_BCC(r,centre_radius, resolution = 50, folder='all_files'): 
     """ 
     Generate a BCC lattice structure and save it as an STL file. 
     """ 
@@ -114,18 +114,12 @@ def Cubic_BCC(r,resolution = 50, folder='all_files'):
         normal_vector, D = plane_from_points(*vertices) 
         plane_equation[face_name] = (normal_vector, D) 
  
-    overlap_range = np.arange(0.01, atom_radius, 0.01)  
-    overlap=0.01 
-    for overlap in overlap_range: 
-        center_radius = np.round(np.sqrt(3),2)/2 + overlap - atom_radius 
-        if center_radius > atom_radius and center_radius < 0.69: 
-            if (center_radius > 0.5 and np.sqrt(center_radius**2 - 0.25) + atom_radius < 0.66) or center_radius <= 0.5: 
-                filename = f"3Cubic_BCC_{r:.2f}_{resolution}.stl" 
-                cached_file = os.path.join(folder, filename) 
-            
-                verts, faces = generate_solid_volume(resolution, atom_positions, T, atom_radius, center_radius, a, b, c, plane_equation) 
-                create_stl_from_mesh(verts, faces, folder, filename) 
-                cached_file = os.path.join(folder, filename) 
-                return cached_file
-        else: 
-            continue 
+    
+    filename = f"3Cubic_BCC_{r:.2f}_{centre_radius}_{resolution}.stl" 
+    cached_file = os.path.join(folder, filename) 
+
+    verts, faces = generate_solid_volume(resolution, atom_positions, T, atom_radius, center_radius, a, b, c, plane_equation) 
+    create_stl_from_mesh(verts, faces, folder, filename) 
+    cached_file = os.path.join(folder, filename) 
+    return cached_file
+   

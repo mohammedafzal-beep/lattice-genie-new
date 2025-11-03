@@ -4,7 +4,8 @@ from components.chat import handle_user_input
 from components.parameter_ui import show_parameter_sliders
 from columns.left_col import left_column
 from columns.right_col import right_column
-from columns.nav_bar import navigation_bar
+from utils.dataloader import log_event
+
 def render_home(data):
     st.markdown("""
     <div class='center'>
@@ -20,7 +21,7 @@ def render_home(data):
 </style>
 
     """, unsafe_allow_html=True)
-    display_thumbnails(data["crystal_images"])
+    display_thumbnails(data["crystal_images"],'Chat mode')
     st.markdown("---")
     st.markdown("<div class='center' style='margin-bottom:5px;'><h2 >💬 Ask to configure lattice:</h2></div>", unsafe_allow_html=True)
    
@@ -28,7 +29,7 @@ def render_home(data):
     with st.container():
       handle_user_input(data)
       if st.session_state.get("confirmed_params"):
-        show_parameter_sliders(data)
+        show_parameter_sliders(data,'Chat mode')
 
 def render_home_dropdown_version(data):
     
@@ -45,7 +46,7 @@ def render_home_dropdown_version(data):
 
 </style>
     """, unsafe_allow_html=True)
-    display_thumbnails(data["crystal_images"])
+    display_thumbnails(data["crystal_images"],'Pro mode')
     st.markdown("---")
     left_col, right_col = st.columns([1,2])
 
@@ -53,12 +54,12 @@ def render_home_dropdown_version(data):
     with left_col:
         left_column(data)
     with st.sidebar:
-      navigation_bar(data)
+      show_parameter_sliders(data,'Pro mode')
     with right_col:
        right_column()
     
     
-def display_thumbnails(images):
+def display_thumbnails(images,mode):
     cols = st.columns(len(images))
     for idx, (name, img_path) in enumerate(images.items()):
         with cols[idx]:
@@ -67,6 +68,8 @@ def display_thumbnails(images):
             except:
                 st.error(f"Couldn't load {name} image.")
             #st.markdown(f"<h4 style='text-align:center;font-weight: normal !important;'>{name}</h4>", unsafe_allow_html=True)
-            if st.button(name,key=f'btn_{name}'):
-              st.session_state[f'go_{name}'] = True
-              st.rerun()
+            with st.columns([1,18,1])[1]:
+              if st.button(name,key=f'btn_{name}'):
+                log_event(name,mode)
+                st.session_state[f'go_{name}'] = True
+                st.rerun()

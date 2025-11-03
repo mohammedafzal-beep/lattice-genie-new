@@ -21,6 +21,10 @@ from streamlit_stl import stl_from_file
 import streamlit.components.v1 as components
 import json
 from openai import OpenAI
+
+from stl import mesh
+import numpy as np
+
 # --- Delete all STL files in the 'all_files/' directory to ensure a clean state before generation ---
 def cleanup_stl_files():
     for f in glob.glob("all_files/*.stl"):
@@ -64,6 +68,50 @@ def openai_api_key_handling():
 
     print("✅ API key saved! Restart the Streamlit app.")
     st.rerun()
+
+def surface_area_to_volume_ratio(stl_file_path):
+    """
+    Calculate the surface area to volume ratio of a 3D mesh from an STL file.
+
+    Parameters
+    ----------
+    stl_file_path : str
+        Path to the STL file.
+
+    Returns
+    -------
+    dict
+        A dictionary containing surface area, volume, and surface area to volume ratio.
+    """
+    # Load the mesh from file
+    model_mesh = mesh.Mesh.from_file(stl_file_path)
+
+    # Calculate surface area
+    surface_area = np.sum(model_mesh.areas)
+
+    # Calculate volume
+    # The signed volume of a triangular mesh can be computed from:
+    # V = (1/6) * sum((v0 × v1) · v2)
+    vectors = model_mesh.vectors
+    cross_prod = np.cross(vectors[:, 1] - vectors[:, 0], vectors[:, 2] - vectors[:, 0])
+    volume = np.abs(np.sum(np.einsum('ij,ij->i', vectors[:, 0], cross_prod)) / 6.0)
+
+    # Avoid division by zero
+    if volume == 0:
+        ratio = np.inf
+    else:
+        ratio = surface_area / volume
+
+    return {
+        "surface_area": surface_area,
+        "volume": volume,
+        "surface_area_to_volume_ratio": ratio
+    }
+
+# Example usage:
+# result = surface_area_to_volume_ratio("example.stl")
+# print(result)
+
 # --- Slider UI component that supports both static and C-dependent dynamic ranges ---
 def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=22, font_size_value=20,color="#ffffff",
                  slider_width=600,label_value_gap=10,confirm_selection=False):
@@ -76,9 +124,19 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
   def t_range_func_C34(C): return (0.1, 1.1 + C, 0.1)
   def t_range_func_C35(C): return (0.1, 0.7 + C, 0.1)
 
+  def body_atom_radius_range(r):
+    radius_range_map = {0.33: (0.545, 0.595, 0.01), 0.34: (0.535, 0.585, 0.01), 0.35: (0.525, 0.585, 0.01), 0.36: (0.515, 0.575, 0.01), 0.37: (0.505, 0.575, 0.01), 0.38: (0.495, 0.565, 0.01), 0.39: (0.485, 0.565, 0.01), 0.4: (0.475, 0.555, 0.01), 0.41: (0.465, 0.555, 0.01), 0.42: (0.455, 0.545, 0.01), 
+0.43: (0.445, 0.545, 0.01), 0.44: (0.445, 0.545, 0.01), 0.45: (0.455, 0.535, 0.01), 0.46: (0.465, 0.535, 0.01), 0.47: (0.475, 0.525, 0.01), 
+0.48: (0.485, 0.525, 0.01), 0.49: (0.495, 0.525, 0.01), 0.5: (0.505, 0.515, 0.01)}
+    return radius_range_map[r]
 
+  def face_atom_radius_range(r):
+    radius_range_map = {0.4: (0.315, 0.415, 0.01), 0.41: (0.305, 0.415, 0.01), 0.42: (0.295, 0.395, 0.01), 0.43: (0.285, 0.385, 0.01), 0.44: (0.275, 0.365, 0.01), 
+0.45: (0.265, 0.355, 0.01), 0.46: (0.255, 0.345, 0.01), 0.47: (0.245, 0.325, 0.01), 0.48: (0.235, 0.315, 0.01), 0.49: (0.225, 0.295, 0.01), 
+0.5: (0.215, 0.285, 0.01), 0.51: (0.205, 0.275, 0.01), 0.52: (0.205, 0.255, 0.01), 0.53: (0.205, 0.245, 0.01), 0.54: (0.205, 0.225, 0.01), 0.55: (0.205, 0.215, 0.01), 0.56: (0.205, 0.205, 0.01)}
+    return radius_range_map[r]
 
-
+  def S_V_ratio(): return 0
   RANGE_FUNC_MAP = {
       "t_range_func_C29": t_range_func_C29,
       "t_range_func_C30": t_range_func_C30,
@@ -87,10 +145,9 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
       "t_range_func_C33": t_range_func_C33,
       "t_range_func_C34": t_range_func_C34,
       "t_range_func_C35": t_range_func_C35,
+      "body_atom_radius_range": body_atom_radius_range,
+      "face_atom_radius_range": face_atom_radius_range
   }
-
-
-
 
   # Units for each param
   unit_map = {
@@ -98,10 +155,6 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
       "face_atom_radius": "Å", "center_atom_radius": "Å",
       "alpha": "°", "beta": "°", "gamma": "°", "resolution": ""
   }
-
-
-
-
 
   # Display names (Greek where applicable)
   greek_map = {
@@ -121,18 +174,12 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
 }
 
 
-
-
-
-
-
-
   # Tooltip descriptions
   descriptions_dict = {
-      'a': 'Lattice constant a',
-      'b': 'Lattice constant b',
-      'c': 'Lattice constant c',
-      'C': 'It influences the volume fraction',
+      'a': 'Lattice constant',
+      'b': 'Lattice constant',
+      'c': 'Lattice constant',
+      'C': 'Influences the volume fraction',
       't': 'Sheet thickness',
       'd': 'Strut diameter',
       'r': 'Radius of the spheres at the corners of the unit cell',
@@ -141,10 +188,9 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
       'gamma': 'Angle between a and b',
       'face_atom_radius': 'Radius of atoms at face centers in FCC',
       'centre_atom_radius': 'Radius of center atom in BCC',
-      'resolution': 'Decrease resolution for faster generation'
+      'resolution': 'Number of pixels used',
+      'S/V_ratio': 'Surface Area to Volume Ratio'
   }
-
-
 
 
   # Render label with unit and tooltip
@@ -152,8 +198,6 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
   display_key = greek_map.get(param_key, param_key)
   label = f"{display_key} ({unit})" if unit else f"{display_key}"
   help_text = descriptions_dict.get(param_key, "")
-
-
 
 
   # Handle dynamic range functions (e.g., t depends on C)
@@ -178,7 +222,7 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
 
 
 
-  default_val = cfg.get("default", cfg.get("min", 0))
+  default_val = cfg.get("default", min_val)
   prev_val = st.session_state.get(param_key, current_params.get(param_key, default_val))
   clamped_val = max(cfg.get("min", 0), min(prev_val, cfg.get("max", 1)))
   st.session_state[param_key] = clamped_val  # store current value

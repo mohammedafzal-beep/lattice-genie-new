@@ -1,4 +1,5 @@
 import streamlit as st
+from utils.dataloader import log_event
 
 def init_state():
     defaults = {
@@ -19,8 +20,10 @@ def init_state():
         if key not in st.session_state:
             st.session_state[key] = val
 
-def reset_home_flag():
+def reset_home_flag(mode):
     if st.session_state.go_home:
+        log_event(page,mode)
+
         st.session_state.current_page = "Home"
         st.session_state.go_home = False
         st.rerun()

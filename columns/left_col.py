@@ -2,7 +2,6 @@ import streamlit as st
 import sys
 import os
 from utils.utils import subtype_selection_to_dict_key
-from columns.nav_bar import navigation_bar
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 # Mode switch area (top)
 def left_column(data):

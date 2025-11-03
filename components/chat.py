@@ -7,237 +7,212 @@ import tempfile
 import os
 import uuid, time
 from components.parameter_ui import show_parameter_sliders
+from utils.dataloader import log_message
 
-client=OpenAI(api_key='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')
+client=OpenAI(api_key='***')
 
-# ---------- Helper: append generated STL (write to persistent temp file) ----------
-def append_generated_stl_from_filename(filename: str, role: str = "assistant"):
-   
-    while st.session_state['stl_path'] is None:
-      pass
-    else:
-        # Normalize/resolve to absolute path for clarity
-        source_path = os.path.abspath(filename)
+def call_openai_chat(messages, data, model='gpt-4o'):
+ 
+  try:
+      messages = [{'role': 'system', 'content': data['system_prompt']}] + messages
+      resp = client.chat.completions.create(model=model, messages=messages, temperature=0)
+      return resp.choices[0].message.content
+  except Exception as e:
+      return f"OpenAI API Error: {e}"
 
-        # Append the STL message referencing the existing file path
-        st.session_state["messages"].append({
-            "id": str(uuid.uuid4()),
-            "role": role,
-            "type": "stl",
-            "file_path": source_path,
-            "filename": filename
-        })
-
-        # Keep track of paths (optional, matches existing tmp_stl_paths usage)
-        st.session_state.setdefault("tmp_stl_paths", []).append(source_path)
-
-        # Rerun to render the new STL inline immediately
-        st.rerun()
-    
 
 def handle_user_input(data):
-    if 'messages' not in st.session_state:
-        st.session_state['messages'] = []
-    st.markdown("""
-<style>
-/* Target all spans inside chat messages */
-div[data-testid="stChatMessage"] * {
-    font-size: 22px !important;   /* adjust as needed */
-    line-height: 1.4 !important;
-}
-/* Target the chat input placeholder */
-div[data-testid="stChatInput"] textarea::placeholder {
-    font-size: 22px !important;   /* bigger font */
-    color: #666 !important;       /* optional: change color */
-     align-self: center !important; /* center vertically */
-                
-}
-/* Optional: force nowrap for single-line messages if needed */
-div[data-testid="stChatMessage"] span {
-    white-space: normal !important;
-}
-div[data-testid="stChatInput"] textarea {
-    font-size: 22px !important;
-    line-height: 1.6 !important;
-    padding: 6px 10px !important;  
-}
-/* Enlarge the send (triangle) button */
-div[data-testid="stChatInput"] button {
-    transform: scale(1.3);      /* adjust multiplier as needed */
-    margin-left: 10px;          /* optional: add spacing */
-     align-self: center !important; /* center vertically */
-}</style>
-<script>
-(function() {
-  // Documents to try (current, parent, top)
-  const docs = [document, (window.parent && window.parent.document), (window.top && window.top.document)].filter(Boolean);
 
-  const selectors = [
-    'div[data-testid="stChatMessageList"]',
-    'div[data-testid="stChatMessages"]',
-    'div[data-testid="stChatContainer"]',
-    'div[data-testid="stChatVirtualizedList"]',
-    'section.main',
-    'div.block-container',
-    'div[role="main"]',
-    'main'
-  ];
+  # --- Session init (unchanged features) ---
+  if "messages" not in st.session_state:
+      st.session_state["messages"] = []
+  if "initialized" not in st.session_state:
+      st.session_state["initialized"] = False
+  if "pending_llm" not in st.session_state:
+      st.session_state["pending_llm"] = None
+  if "processing_input" not in st.session_state:
+      st.session_state["processing_input"] = False
+   # Add an opening assistant message exactly once
+  if not st.session_state["initialized"]:
+      if not st.session_state["messages"]:
+          st.session_state["messages"].append({
+              "id": str(uuid.uuid4()),
+              "role": "assistant",
+              "type": "text",
+              "content": "Hello! I am Lattice Genie. Ask me to recommend a lattice structure."
+          })
+      st.session_state["initialized"] = True
 
-  function findContainer() {
-    // Try common selectors
-    for (const d of docs) {
-      for (const sel of selectors) {
-        try {
-          const el = d.querySelector(sel);
-          if (el) return el;
-        } catch (e) {}
-      }
-    }
-    // Fallback: find a chat message then find first scrollable ancestor
-    for (const d of docs) {
-      try {
-        const anyMsg = d.querySelector('div[data-testid="stChatMessage"], div[data-testid="stChatBubble"], div[class*="stChat"]');
-        if (anyMsg) {
-          let p = anyMsg.parentElement;
-          while (p) {
-            try {
-              const cs = window.getComputedStyle(p);
-              if (cs.overflowY === 'auto' || cs.overflowY === 'scroll' || p.scrollHeight > p.clientHeight) return p;
-            } catch (e) {}
-            p = p.parentElement;
-          }
-        }
-      } catch (e) {}
-    }
-    return null;
+
+  # ---------- CSS (no avatars; user messages flush-right) ----------
+  # Added animated typing-dots CSS — these dots will be injected as HTML inside the assistant placeholder message.
+  st.markdown("""
+  <style>
+  .chat-wrapper { width:100%; max-width:900px; margin:8px auto; display:flex; flex-direction:column; }
+  .chat-box {
+      border:1px solid #444;
+      border-radius:12px;
+      background:#2e2e2e;
+      padding:12px;
+      height:420px;
+      overflow-y:auto;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      box-sizing:border-box;
   }
-
-  function scrollToBottom(el) {
-    if (!el) return;
-    try {
-      el.scrollTop = el.scrollHeight;
-    } catch (e) {}
+  .message {
+      max-width:75%;
+      padding:10px 14px;
+      border-radius:12px;
+      font-size:17px;
+      line-height:1.4;
+      word-wrap:break-word;
+      color:#ffffff;
+      display:inline-block;
   }
+  .user { margin-left:auto; background-color:#7324B9; text-align:right; }
+  .assistant { margin-right:auto; background-color:#3f51b5; text-align:left; }
+  .stl-wrapper {display:block; margin-top:6px; margin-bottom:6px; }
+  .stChatInputWrapper { margin-top: -6px; } /* visually attach native chat_input */
 
-  function setupObserver(el) {
-    if (!el || el.__chatObserverAttached) return;
-    el.__chatObserverAttached = true;
 
-    const observer = new MutationObserver((mutations) => {
-      // Quick micro-delay so Streamlit DOM finishes painting
-      setTimeout(() => scrollToBottom(el), 10);
+  /* animated typing dots (these are in-message HTML) */
+  .typing-dots { display:flex; gap:6px; align-items:center; justify-content:flex-end; margin-top:6px; }
+  .typing-dots .dot { width:10px; height:10px; border-radius:50%; background:#cfe9ff; opacity:0.25; animation:typing-blink 1s infinite ease-in-out; transform-origin:center; }
+  .typing-dots .dot:nth-child(1){ animation-delay:0s; }
+  .typing-dots .dot:nth-child(2){ animation-delay:0.15s; }
+  .typing-dots .dot:nth-child(3){ animation-delay:0.3s; }
+  @keyframes typing-blink {
+    0% { transform: translateY(0); opacity:0.25; }
+    30% { transform: translateY(-6px); opacity:1; }
+    60% { transform: translateY(0); opacity:0.6; }
+    100% { transform: translateY(0); opacity:0.25; }
+  }
+  </style>
+  """, unsafe_allow_html=True)
 
-      // If our special message appears, do stronger, delayed scrolls
-      for (const m of mutations) {
-        for (const n of m.addedNodes || []) {
-          try {
-            if (n && n.innerText && n.innerText.includes('Generation may take a few seconds')) {
-              setTimeout(() => scrollToBottom(el), 50);
-              setTimeout(() => scrollToBottom(el), 300);
-              setTimeout(() => scrollToBottom(el), 700);
+
+  # --- Render chat wrapper and messages (all inside chat-box) ---
+  st.markdown('<div class="chat-wrapper">', unsafe_allow_html=True)
+
+
+  messages_html = '<div class="chat-box" id="chat-box">'
+  # Build simple HTML for text messages only; STL handled via stl_from_file below in order
+  
+  for msg in st.session_state["messages"]:
+      role = msg.get("role", "assistant")
+      css_class = "user" if role == "user" else "assistant"
+      ph = st.empty()
+      with ph.container():
+
+      # If this is a typing placeholder message (msg['typing'] == True), render its raw HTML content (not escaped).
+        if msg.get("type", "text") == "text":
+          if msg.get("typing", False):
+              # content contains HTML for dots; insert raw
+              content_html = msg.get("content", "")
+              messages_html += f'<div class="message {css_class}">{content_html}</div>'
+          else:
+              content = escape(msg.get("content", ""))
+              messages_html += f'<div class="message {css_class}">{content}</div>'
+  messages_html += '</div>'
+
+
+  # Auto-scroll to bottom after render
+  messages_html += """
+  <script>
+  const box = document.getElementById('chat-box');
+  if (box) { box.scrollTop = box.scrollHeight; }
+  </script>
+  """
+  st.markdown(messages_html, unsafe_allow_html=True)
+
+
+  # --- Native Streamlit chat_input (do NOT change this key elsewhere) ---
+  user_input = st.chat_input("Ask Lattice Genie to recommend a structure", key="user_chat_input")
+  # Download button directly under the STL viewer (same flow)
+     
+  # Step 1: If the user submitted text, append it immediately and mark pending LLM for follow-up processing.
+  if user_input and st.session_state["pending_llm"] is None:
+      # Prevent accidental duplicate if last message already equals this user_input
+      is_dup = False
+      if st.session_state["messages"]:
+          last = st.session_state["messages"][-1]
+          if last.get("role") == "user" and last.get("content") == user_input:
+              is_dup = True
+
+
+      if not is_dup:
+          # Immediately show the user's message
+          st.session_state["messages"].append({
+              "id": str(uuid.uuid4()),
+              "role": "user",
+              "type": "text",
+              "content": user_input
+          })
+          log_message('user', user_input)
+
+      # Register pending LLM processing (we'll do it on the next run)
+      st.session_state["pending_llm"] = {"input": user_input}
+
+
+      # Rerun so the UI updates immediately with the user's message visible
+      st.rerun()
+
+
+  # Step 2: If there is pending work and we're not already processing it, do the LLM call now.
+  # We append a typing placeholder message (with HTML dots) and rerun so the dots appear inside chat-box.
+  if st.session_state["pending_llm"] is not None and not st.session_state["processing_input"]:
+      st.session_state["processing_input"] = True
+      pending = st.session_state["pending_llm"]
+      user_text = pending.get("input", "")
+
+
+      # Append an assistant placeholder message that contains the animated dots HTML and mark typing=True
+      typing_html = '<div class="typing-dots" style="justify-content:flex-end;"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>'
+      st.session_state["messages"].append({
+          "id": str(uuid.uuid4()),
+          "role": "assistant",
+          "type": "text",
+          "content": typing_html,
+          "typing": True
+      })
+
+
+      # Rerun so the typing dots appear immediately inside the chat box
+      st.rerun()
+
+
+  # Next run: detect the typing placeholder and perform the LLM call, then replace the placeholder with the assistant reply
+  if st.session_state["processing_input"] and st.session_state["messages"]:
+      last_msg = st.session_state["messages"][-1]
+      if last_msg.get("role") == "assistant" and last_msg.get("typing", False):
+          pending = st.session_state.get("pending_llm") or {}
+          user_text = pending.get("input", "")
+
+
+          # Call the LLM (blocking)
+          assistant_reply = call_openai_chat(st.session_state["messages"], data)
+           
+          msg_to_display = process_assistant_response(assistant_reply, data)
+
+          # Replace the typing placeholder with the real assistant reply (plain text)
+          st.session_state["messages"][-1] = {
+                "id": str(uuid.uuid4()),
+                "role": "assistant",
+                "type": "text",
+                "content": msg_to_display
             }
-          } catch (e) {}
-        }
-      }
-    });
+          log_message('assistant', msg_to_display)
 
-    observer.observe(el, { childList: true, subtree: true });
-
-    // A short aggressive retry burst to catch slow renders (50ms x 40 = 2s)
-    let tries = 0;
-    const t = setInterval(() => {
-      scrollToBottom(el);
-      tries += 1;
-      if (tries > 40) clearInterval(t);
-    }, 50);
-  }
-
-  function attachOnce() {
-    const el = findContainer();
-    if (el) {
-      setupObserver(el);
-      scrollToBottom(el);
-      return true;
-    }
-    return false;
-  }
-
-  // Try immediate attach; if not found, poll until found (5s max)
-  if (!attachOnce()) {
-    let attempts = 0;
-    const poll = setInterval(() => {
-      if (attachOnce() || ++attempts > 100) clearInterval(poll);
-    }, 50);
-  }
-})();
-    </script>
-""", unsafe_allow_html=True)
-    st.session_state['message_container'] = st.container()
-    # Display existing messages
-    with st.session_state['message_container']:
-        for msg in st.session_state['messages']:
-            st.chat_message(msg['role']).write(msg['content'])
+          # Clear pending and processing flags
+          st.session_state["pending_llm"] = None
+          st.session_state["processing_input"] = False
 
 
-    # Chat input
-    user_input = st.chat_input('Ask Lattice Genie to generate a lattice structure.')
+          # Rerun to render the assistant reply (the typing HTML is gone now)
+          st.rerun()
 
-    if user_input:
-
-        # Append and show user input immediately
-        st.session_state['messages'].append({'role': 'user', 'content': user_input})
-        with st.session_state['message_container']:
-            st.chat_message('user').write(user_input)
-            
-
-
-            # Typing dots directly below user message using CSS class
-            typing_placeholder = st.empty()
-            typing_placeholder.markdown("""
-            <style>
-            .typing-dots {
-                display: flex;
-                justify-content: center;
-                margin-top: 65px;
-                margin-bottom: 65px;
-            }
-            .typing-dots .dot {
-                height: 14px;
-                width: 14px;
-                margin: 0 4px;
-                background-color: blue;
-                border-radius: 50%;
-                display: inline-block;
-                animation: blink 1.4s infinite both;
-            }
-            .typing-dots .dot:nth-child(2) { animation-delay: 0.2s; }
-            .typing-dots .dot:nth-child(3) { animation-delay: 0.4s; }
-            @keyframes blink { 0% {opacity:.2;} 20% {opacity:1;} 100% {opacity:.2;} }
-            </style>
-            <div class="typing-dots">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
-            """, unsafe_allow_html=True)
-        # Call OpenAI
-        messages = [{'role': 'system', 'content': data['system_prompt']}] + st.session_state['messages']
-        try:
-            resp = client.chat.completions.create(model='gpt-4o', messages=messages, temperature=0)
-            assistant_msg = resp.choices[0].message.content
-        except Exception as e:
-            assistant_msg = f"OpenAI API Error: {e}"
-
-        # Replace typing dots with assistant message
-        typing_placeholder.empty()
-        process_status = process_assistant_response(assistant_msg, data)
-        if process_status == 'processed':
-            pass
-        else:
-          with st.session_state['message_container']:
-              st.session_state["messages"].append({"role": "assistant", "content": assistant_msg})
-              st.chat_message("assistant").write(assistant_msg)
-    
 
 
 def process_assistant_response(assistant_msg, data):
@@ -255,8 +230,12 @@ def process_assistant_response(assistant_msg, data):
                 for k, cfg in schema.items():
                     base[k] = cfg['default']
                 st.session_state['confirmed_params'] = base
-                return 'processed'
+                confirmed = True
         except json.JSONDecodeError:
             pass
+    if confirmed:
+      return "⬅️ Adjust parameters in the sidebar, before generating the STL file"
+    else:
+      return assistant_msg
       
 

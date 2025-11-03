@@ -4,7 +4,7 @@ from skimage import measure
 from stl import mesh
 import os
 
-def Cubic_FCC( r,resolution = 50, folder='all_files'):
+def Cubic_FCC( r, face_atom_radius, resolution = 50, folder='all_files'):
     def Lattice_atom_positions(a, b, c, alpha, beta, gamma,):
         alpha_rad = np.deg2rad(alpha)
         beta_rad = np.deg2rad(beta)
@@ -128,8 +128,8 @@ def Cubic_FCC( r,resolution = 50, folder='all_files'):
     plane_equation = {face: plane_from_points(*verts) for face, verts in faces.items()}
 
     # Compute face_atom_radius using FCC geometry (0.355 as before)
-    face_atom_radius = 0.355
-    filename = f"2Cubic_FCC_{r:.2f}_{resolution}.stl" 
+    
+    filename = f"2Cubic_FCC_{r:.2f}_{face_atom_radius}_{resolution}.stl" 
     cached_file = os.path.join(folder, filename) 
 
     verts, faces = generate_solid_volume(resolution, atom_positions, T, atom_radius, face_atom_radius, a, b, c, plane_equation)
