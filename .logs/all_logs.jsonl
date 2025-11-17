@@ -1,0 +1,288 @@
+{"timestamp": "2025-11-17T11:55:30.904102", "role": "user", "content": "gen sheet gyroid "}
+{"timestamp": "2025-11-17T11:55:37.822438", "role": "assistant", "content": "The Schoen Gyroid (G) Sheet-Based TPMS is renowned for its intricate, continuous surface that yields isotropic mechanical properties, making it ideal for applications demanding uniform strength, stiffness, and energy absorption capabilities.\n\nHere are the design parameters for the gyroid sheet-based TPMS:\n\n- **S/V ratio**: Ratio of the surface area to the volume of the unit cell\n- **Level set constant (C)**: It influences the volume fraction\n- **Sheet thickness (t)**\n- **Resolution**: Number of pixels used to generate the structure\n\n\ud83d\udca1 Tip 1: The S/V ratio value depends on other parameters, so its value can only be changed by tweaking other parameters values below it.\n\n\ud83d\udca1 Tip 2: You can try lower resolution for experimentation, and use max resolution before downloading the STL file.\n\nPlease confirm if you would like to proceed with this structure."}
+{"timestamp": "2025-11-17T11:55:49.425841", "role": "user", "content": "confirm"}
+{"timestamp": "2025-11-17T11:55:52.025441", "role": "assistant", "content": "\u2b05\ufe0f Adjust parameters in the sidebar"}
+{"timestamp": "2025-11-17T11:57:28.209232", "event": "close app"}
+{"timestamp": "2025-11-17T11:57:28.213635", "event": "close app"}
+{"timestamp": "2025-11-17T11:57:28.216666", "event": "close app"}
+{"timestamp": "2025-11-17T11:57:28.218913", "event": "close app"}
+{"timestamp": "2025-11-17T11:57:28.221323", "event": "close app"}
+{"timestamp": "2025-11-17T11:57:28.230491", "event": "close app"}
+{"timestamp": "2025-11-17T11:57:28.277154", "event": "close app"}
+{"timestamp": "2025-11-17T11:57:28.279900", "event": "close app"}
+{"timestamp": "2025-11-17T11:57:28.282767", "event": "close app"}
+{"timestamp": "2025-11-17T11:57:58.437688", "role": "user", "content": "gen sheet gyroid"}
+{"timestamp": "2025-11-17T11:58:04.966369", "role": "assistant", "content": "The Schoen Gyroid (G) Sheet-Based TPMS is renowned for its intricate, continuous surface that yields isotropic mechanical properties. It's ideal for applications demanding uniform strength, stiffness, and energy absorption capabilities.\n\nHere are the design parameters for this structure:\n\n- **S/V ratio**: Ratio of the surface area to the volume of the unit cell.\n- **Level set constant (C)**: Influences the volume fraction.\n- **Sheet thickness (t)**.\n- **Resolution**: Number of pixels used to generate the structure.\n\n\ud83d\udca1 Tip 1: The S/V ratio value depends on other parameters, so its value can only be changed by tweaking other parameters values below it.\n\n\ud83d\udca1 Tip 2: You can try lower resolution for experimentation, and use max resolution before downloading the STL file.\n\nPlease confirm if this is the structure you want to proceed with!"}
+{"timestamp": "2025-11-17T11:58:13.185259", "role": "user", "content": "confirm"}
+{"timestamp": "2025-11-17T11:58:16.187439", "role": "assistant", "content": "\u2b05\ufe0f Adjust parameters in the sidebar"}
+{"timestamp": "2025-11-17T11:58:17.319401", "param_dict": {"C": 1.4, "t": 1, "resolution": 200, "S_V_ratio": 1}, "mode": "Chat mode"}
+{"timestamp": "2025-11-17T11:58:17.319401", "param_dict": {"C": 1.4, "t": 1, "resolution": 200, "S_V_ratio": 1}, "mode": "Chat mode"}
+{"timestamp": "2025-11-17T11:58:28.967966", "event": "close app"}
+{"timestamp": "2025-11-17T11:58:28.970786", "event": "close app"}
+{"timestamp": "2025-11-17T11:58:28.973405", "event": "close app"}
+{"timestamp": "2025-11-17T11:58:28.975870", "event": "close app"}
+{"timestamp": "2025-11-17T11:58:28.979140", "event": "close app"}
+{"timestamp": "2025-11-17T11:58:28.981589", "event": "close app"}
+{"timestamp": "2025-11-17T11:58:28.984022", "event": "close app"}
+{"timestamp": "2025-11-17T11:58:28.986431", "event": "close app"}
+{"timestamp": "2025-11-17T11:58:28.988838", "event": "close app"}
+{"timestamp": "2025-11-17T11:59:41.566927", "role": "user", "content": "gen sheet gyroid"}
+{"timestamp": "2025-11-17T11:59:46.499557", "role": "assistant", "content": "The Schoen Gyroid (G) Sheet-Based TPMS is renowned for its intricate, continuous surface that yields isotropic mechanical properties. It's ideal for applications demanding uniform strength, stiffness, and energy absorption capabilities.\n\nHere are the design parameters for this structure:\n\n- **S/V ratio**: Ratio of the surface area to the volume of the unit cell\n- **Level set constant (C)**: Influences the volume fraction\n- **Sheet thickness (t)**\n- **Resolution**: Number of pixels used to generate the structure\n\n\ud83d\udca1 Tip 1: The S/V ratio value depends on other parameters, so its value can only be changed by tweaking other parameters values below it.\n\n\ud83d\udca1 Tip 2: You can try lower resolution for experimentation, and use max resolution before downloading the STL file.\n\nPlease confirm if you would like to proceed with this structure."}
+{"timestamp": "2025-11-17T11:59:56.339219", "role": "user", "content": "confirm"}
+{"timestamp": "2025-11-17T11:59:59.451565", "role": "assistant", "content": "\u2b05\ufe0f Adjust parameters in the sidebar"}
+{"timestamp": "2025-11-17T12:00:00.208244", "param_dict": {"C": 0.0, "t": 0.1, "resolution": 168}, "mode": "Chat mode"}
+{"timestamp": "2025-11-17T12:00:00.208244", "param_dict": {"C": 0.0, "t": 0.1, "resolution": 168}, "mode": "Chat mode"}
+{"timestamp": "2025-11-17T12:00:35.077224", "button_name": "Download", "mode": "Chat mode"}
+{"timestamp": "2025-11-17T14:58:57.168674", "event": "close app"}
+{"timestamp": "2025-11-17T14:58:57.172758", "event": "close app"}
+{"timestamp": "2025-11-17T14:58:57.175874", "event": "close app"}
+{"timestamp": "2025-11-17T14:58:57.179304", "event": "close app"}
+{"timestamp": "2025-11-17T14:58:57.184357", "event": "close app"}
+{"timestamp": "2025-11-17T14:58:57.187234", "event": "close app"}
+{"timestamp": "2025-11-17T14:58:57.190378", "event": "close app"}
+{"timestamp": "2025-11-17T14:58:57.193121", "event": "close app"}
+{"timestamp": "2025-11-17T14:58:57.195933", "event": "close app"}
+{"timestamp": "2025-11-17T14:58:57.198997", "event": "close app"}
+{"timestamp": "2025-11-17T15:00:11.860893", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:00:21.814422", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:00:22.131393", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:00:22.131393", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:02:22.566661", "event": "close app"}
+{"timestamp": "2025-11-17T15:02:22.569382", "event": "close app"}
+{"timestamp": "2025-11-17T15:02:52.933361", "role": "user", "content": "gen cubic simple"}
+{"timestamp": "2025-11-17T15:02:59.761605", "role": "assistant", "content": "The simple cubic lattice structure offers moderate mechanical strength and stiffness due to its low packing density, making it less commonly used in high-strength applications. Here are the design parameters for the simple cubic lattice structure:\n\n- **S/V ratio**: Ratio of the surface area to the volume of the unit cell\n- **Sphere radius (r)**: Radius of the spheres at the corners of the unit cell\n- **Resolution**: Number of pixels used to generate the structure\n\n\ud83d\udca1 Tip 1: The S/V ratio value depends on other parameters, so its value can only be changed by tweaking other parameters values below it.\n\n\ud83d\udca1 Tip 2: You can try lower resolution for experimentation, and use max resolution before downloading the STL file.\n\nPlease confirm if you would like to proceed with this structure."}
+{"timestamp": "2025-11-17T15:03:10.498618", "role": "user", "content": "confirm"}
+{"timestamp": "2025-11-17T15:03:16.242479", "role": "assistant", "content": "\u2b05\ufe0f Adjust parameters in the sidebar"}
+{"timestamp": "2025-11-17T15:03:16.778068", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Chat mode"}
+{"timestamp": "2025-11-17T15:03:16.778068", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Chat mode"}
+{"timestamp": "2025-11-17T15:03:32.809178", "button_name": "Download", "mode": "Chat mode"}
+{"timestamp": "2025-11-17T15:04:30.334303", "event": "close app"}
+{"timestamp": "2025-11-17T15:04:30.336976", "event": "close app"}
+{"timestamp": "2025-11-17T15:04:30.340060", "event": "close app"}
+{"timestamp": "2025-11-17T15:04:30.342221", "event": "close app"}
+{"timestamp": "2025-11-17T15:04:30.344377", "event": "close app"}
+{"timestamp": "2025-11-17T15:04:30.346526", "event": "close app"}
+{"timestamp": "2025-11-17T15:04:30.348687", "event": "close app"}
+{"timestamp": "2025-11-17T15:04:30.363907", "event": "close app"}
+{"timestamp": "2025-11-17T15:04:30.366690", "event": "close app"}
+{"timestamp": "2025-11-17T15:05:19.032973", "role": "user", "content": "gen sheet gyroid "}
+{"timestamp": "2025-11-17T15:05:27.506027", "role": "assistant", "content": "The Schoen Gyroid (G) Sheet-Based TPMS is renowned for its intricate, continuous surface that yields isotropic mechanical properties. This makes it ideal for applications demanding uniform strength, stiffness, and energy absorption capabilities.\n\nHere are the design parameters for the gyroid sheet-based TPMS:\n\n- **S/V ratio**: Ratio of the surface area to the volume of the unit cell.\n  - \ud83d\udca1 Tip 1: The S/V ratio value depends on other parameters, so its value can only be changed by tweaking other parameters values below it.\n- **Level set constant (C)**: It influences the volume fraction.\n- **Sheet thickness (t)**: Thickness of the sheet.\n- **Resolution**: Number of pixels used to generate the structure.\n  - \ud83d\udca1 Tip 2: You can try lower resolution for experimentation, and use max resolution before downloading the STL file.\n\nPlease confirm if you would like to proceed with this structure."}
+{"timestamp": "2025-11-17T15:05:38.766890", "role": "user", "content": "confirm"}
+{"timestamp": "2025-11-17T15:05:41.952045", "role": "assistant", "content": "\u2b05\ufe0f Adjust parameters in the sidebar"}
+{"timestamp": "2025-11-17T15:05:43.050218", "param_dict": {"C": 0.0, "t": 0.1, "resolution": 168}, "mode": "Chat mode"}
+{"timestamp": "2025-11-17T15:05:43.050218", "param_dict": {"C": 0.0, "t": 0.1, "resolution": 168}, "mode": "Chat mode"}
+{"timestamp": "2025-11-17T15:06:17.186378", "button_name": "Download", "mode": "Chat mode"}
+{"timestamp": "2025-11-17T15:08:28.554132", "event": "close app"}
+{"timestamp": "2025-11-17T15:08:28.557772", "event": "close app"}
+{"timestamp": "2025-11-17T15:08:28.560680", "event": "close app"}
+{"timestamp": "2025-11-17T15:08:28.563718", "event": "close app"}
+{"timestamp": "2025-11-17T15:08:28.566353", "event": "close app"}
+{"timestamp": "2025-11-17T15:08:28.569048", "event": "close app"}
+{"timestamp": "2025-11-17T15:08:28.572223", "event": "close app"}
+{"timestamp": "2025-11-17T15:08:28.575559", "event": "close app"}
+{"timestamp": "2025-11-17T15:08:28.578228", "event": "close app"}
+{"timestamp": "2025-11-17T15:08:48.619669", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:08:52.135320", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:08:52.805399", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:08:52.805399", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:09:52.975624", "event": "close app"}
+{"timestamp": "2025-11-17T15:09:52.991294", "event": "close app"}
+{"timestamp": "2025-11-17T15:10:27.142012", "event": "close app"}
+{"timestamp": "2025-11-17T15:10:49.448183", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:10:53.532633", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:10:56.357542", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:10:57.296220", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:10:57.515956", "param_dict": {"C": 0.0, "t": 0.2, "resolution": 168}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:10:57.515956", "param_dict": {"C": 0.0, "t": 0.2, "resolution": 168}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:12:07.875052", "event": "close app"}
+{"timestamp": "2025-11-17T15:12:07.879958", "event": "close app"}
+{"timestamp": "2025-11-17T15:12:07.890102", "event": "close app"}
+{"timestamp": "2025-11-17T15:12:07.893973", "event": "close app"}
+{"timestamp": "2025-11-17T15:13:22.802583", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:13:27.451716", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:13:29.515530", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:13:31.639315", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:13:31.883646", "param_dict": {"a": 1.0, "b": 1.3, "c": 0.8, "r": 0.47, "face_atom_radius": 0.37, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:13:31.883646", "param_dict": {"a": 1.0, "b": 1.3, "c": 0.8, "r": 0.47, "face_atom_radius": 0.37, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:18:12.678290", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:18:18.974591", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:18:22.468273", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:18:24.190064", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:18:24.481913", "param_dict": {"C": 0.0, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:18:24.481913", "param_dict": {"C": 0.0, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:18:56.248397", "event": "close app"}
+{"timestamp": "2025-11-17T15:18:56.251570", "event": "close app"}
+{"timestamp": "2025-11-17T15:18:56.254260", "event": "close app"}
+{"timestamp": "2025-11-17T15:18:56.269145", "event": "close app"}
+{"timestamp": "2025-11-17T15:19:48.972058", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:19:54.205285", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:19:58.405638", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:19:58.840521", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:19:59.566843", "param_dict": {"C": 0.0, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:19:59.566843", "param_dict": {"C": 0.0, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:28:13.631988", "event": "close app"}
+{"timestamp": "2025-11-17T15:28:13.635410", "event": "close app"}
+{"timestamp": "2025-11-17T15:28:13.638040", "event": "close app"}
+{"timestamp": "2025-11-17T15:28:13.640183", "event": "close app"}
+{"timestamp": "2025-11-17T15:28:31.195744", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:28:35.258487", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:28:35.677197", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:28:35.677197", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:29:50.152724", "event": "close app"}
+{"timestamp": "2025-11-17T15:29:50.157114", "event": "close app"}
+{"timestamp": "2025-11-17T15:30:09.417526", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:30:15.242165", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:30:19.022759", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:30:19.378890", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:30:19.378890", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:32:03.343655", "event": "close app"}
+{"timestamp": "2025-11-17T15:32:03.357129", "event": "close app"}
+{"timestamp": "2025-11-17T15:32:03.360060", "event": "close app"}
+{"timestamp": "2025-11-17T15:32:18.444045", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:32:22.245562", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:32:22.568373", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:32:22.568373", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:34:14.752770", "event": "close app"}
+{"timestamp": "2025-11-17T15:34:14.810615", "event": "close app"}
+{"timestamp": "2025-11-17T15:34:35.910667", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:34:40.174462", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:34:42.210518", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:34:42.684381", "param_dict": {"C": 0.0, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:34:42.684381", "param_dict": {"C": 0.0, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:34:58.280058", "event": "close app"}
+{"timestamp": "2025-11-17T15:34:58.283424", "event": "close app"}
+{"timestamp": "2025-11-17T15:34:58.286558", "event": "close app"}
+{"timestamp": "2025-11-17T15:35:12.863175", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:35:21.189367", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:35:21.487317", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:35:21.487317", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:36:19.660920", "event": "close app"}
+{"timestamp": "2025-11-17T15:36:19.663650", "event": "close app"}
+{"timestamp": "2025-11-17T15:36:38.838533", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:36:43.950744", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:36:46.677182", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:36:47.154714", "param_dict": {"C": 0.0, "t": 0.1, "resolution": 168}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:36:47.154714", "param_dict": {"C": 0.0, "t": 0.1, "resolution": 168}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:39:10.800086", "event": "close app"}
+{"timestamp": "2025-11-17T15:39:10.834255", "event": "close app"}
+{"timestamp": "2025-11-17T15:39:10.920367", "event": "close app"}
+{"timestamp": "2025-11-17T15:39:27.817341", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:39:32.439638", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:39:35.244937", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:39:36.487897", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:39:36.942387", "param_dict": {"C": 0.0, "t": 0.1, "resolution": 168}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:39:36.942387", "param_dict": {"C": 0.0, "t": 0.1, "resolution": 168}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:41:55.665137", "event": "close app"}
+{"timestamp": "2025-11-17T15:41:55.667961", "event": "close app"}
+{"timestamp": "2025-11-17T15:41:55.670666", "event": "close app"}
+{"timestamp": "2025-11-17T15:41:55.673323", "event": "close app"}
+{"timestamp": "2025-11-17T15:42:13.020971", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:42:16.468232", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:42:16.735666", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:42:16.735666", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:43:41.567826", "event": "close app"}
+{"timestamp": "2025-11-17T15:43:41.570582", "event": "close app"}
+{"timestamp": "2025-11-17T15:43:56.686152", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:44:00.364159", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:44:00.791201", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:44:00.791201", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:44:46.434853", "event": "close app"}
+{"timestamp": "2025-11-17T15:44:46.437715", "event": "close app"}
+{"timestamp": "2025-11-17T15:45:04.046148", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:45:08.490090", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:45:09.119937", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:45:09.119937", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:45:49.953729", "event": "close app"}
+{"timestamp": "2025-11-17T15:45:49.957281", "event": "close app"}
+{"timestamp": "2025-11-17T15:46:05.437879", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:46:08.720825", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:46:08.996786", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:46:08.996786", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:47:18.314960", "event": "close app"}
+{"timestamp": "2025-11-17T15:47:18.318299", "event": "close app"}
+{"timestamp": "2025-11-17T15:48:09.348959", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:48:13.697399", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:48:14.086600", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:48:14.086600", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:49:14.415730", "event": "close app"}
+{"timestamp": "2025-11-17T15:49:14.450862", "event": "close app"}
+{"timestamp": "2025-11-17T15:49:29.558824", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:49:33.691319", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:49:34.062141", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:49:34.062141", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:50:49.536346", "event": "close app"}
+{"timestamp": "2025-11-17T15:50:49.539292", "event": "close app"}
+{"timestamp": "2025-11-17T15:51:08.372764", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:51:11.441805", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:51:11.834208", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T15:51:11.834208", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:00:45.520306", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:00:50.423833", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:00:50.697894", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:00:50.697894", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:01:37.021272", "event": "close app"}
+{"timestamp": "2025-11-17T16:01:37.041016", "event": "close app"}
+{"timestamp": "2025-11-17T16:01:54.535576", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:01:59.160608", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:01:59.659222", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:01:59.659222", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:02:24.298965", "event": "close app"}
+{"timestamp": "2025-11-17T16:02:24.301782", "event": "close app"}
+{"timestamp": "2025-11-17T16:02:39.310508", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:02:42.669376", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:02:42.957008", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:02:42.957008", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:03:10.366944", "event": "close app"}
+{"timestamp": "2025-11-17T16:03:10.369578", "event": "close app"}
+{"timestamp": "2025-11-17T16:03:25.638361", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:03:28.738395", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:03:29.217133", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:03:29.217133", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:03:46.001083", "event": "close app"}
+{"timestamp": "2025-11-17T16:03:46.003755", "event": "close app"}
+{"timestamp": "2025-11-17T16:04:05.476226", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:04:09.539006", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:04:09.864540", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:04:09.864540", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:04:40.161626", "event": "close app"}
+{"timestamp": "2025-11-17T16:04:40.165920", "event": "close app"}
+{"timestamp": "2025-11-17T16:04:55.779074", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:04:59.119763", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:04:59.414778", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:04:59.414778", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:06:28.196878", "event": "close app"}
+{"timestamp": "2025-11-17T16:06:28.199532", "event": "close app"}
+{"timestamp": "2025-11-17T16:06:45.991922", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:06:57.074624", "event": "close app"}
+{"timestamp": "2025-11-17T16:07:13.679630", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:07:17.146159", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:07:17.531052", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:07:17.531052", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:11:09.616615", "event": "close app"}
+{"timestamp": "2025-11-17T16:11:09.619597", "event": "close app"}
+{"timestamp": "2025-11-17T16:11:25.283607", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:11:37.338507", "event": "close app"}
+{"timestamp": "2025-11-17T16:11:54.665387", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:11:57.859505", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:11:58.264375", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:11:58.264375", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:12:49.517303", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:12:51.916501", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:12:55.237924", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:12:55.546948", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:12:55.546948", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:13:14.564090", "event": "close app"}
+{"timestamp": "2025-11-17T16:13:14.566628", "event": "close app"}
+{"timestamp": "2025-11-17T16:13:14.569127", "event": "close app"}
+{"timestamp": "2025-11-17T16:13:30.100211", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:13:33.472545", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:13:33.793613", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:13:33.793613", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:14:00.899254", "event": "close app"}
+{"timestamp": "2025-11-17T16:14:00.901782", "event": "close app"}
+{"timestamp": "2025-11-17T16:14:32.682411", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:14:36.959233", "button_name": "Home", "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:14:37.288694", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:14:37.288694", "param_dict": {"r": 0.52, "resolution": 50}, "mode": "Pro mode"}
+{"timestamp": "2025-11-17T16:14:56.261976", "event": "close app"}
+{"timestamp": "2025-11-17T16:14:56.264726", "event": "close app"}

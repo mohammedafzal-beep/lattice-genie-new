@@ -1,5 +1,6 @@
 import json
 import datetime
+import os
 def load_json(file):
     with open(file, "r") as f:
         return json.load(f)
@@ -41,7 +42,8 @@ def log_event(button_name,mode):
     with open(ALL_LOGS, "a", encoding="utf-8") as f:
         f.write(json.dumps(log_entry) + "\n")
 
-LOG_SLIDER_CHANGES =  '.logs/log_slider_changes.jsonl'
+LOG_SLIDER_CHANGES_TEMPORARY =  '.logs/log_slider_changes_temporary.jsonl'
+LOG_SLIDER_CHANGES_PERMANENT = '.logs/log_slider_changes_permanent.jsonl'
 def log_slider_changes(param_dict,mode):
     log_entry = {
         "timestamp": datetime.datetime.now().isoformat(),
@@ -49,14 +51,9 @@ def log_slider_changes(param_dict,mode):
         "mode": mode
     }
 
-    # Ensure log file exists
-    os.makedirs(os.path.dirname(LOG_SLIDER_CHANGES), exist_ok=True)
-    if not os.path.exists(LOG_SLIDER_CHANGES):
-        open(LOG_SLIDER_CHANGES, 'w', encoding='utf-8').close()
-
     # Read existing entries
     existing_entries = []
-    with open(LOG_SLIDER_CHANGES, "r", encoding="utf-8") as f:
+    with open(LOG_SLIDER_CHANGES_TEMPORARY, "r", encoding="utf-8") as f:
         for line in f:
             try:
                 existing_entries.append(json.loads(line))
@@ -65,9 +62,24 @@ def log_slider_changes(param_dict,mode):
 
     # Check if the same param_dict already exists
     existing_param_dicts = [entry["param_dict"] for entry in existing_entries]
+
+    for file_path in [LOG_SLIDER_CHANGES_PERMANENT, ALL_LOGS]:
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(log_entry) + "\n")
+
     if param_dict not in existing_param_dicts:
         # Append to log files
-        for file_path in [LOG_SLIDER_CHANGES, BUTTON_HISTORY_FILE, ALL_LOGS]:
-            os.makedirs(os.path.dirname(file_path), exist_ok=True)
-            with open(file_path, "a", encoding="utf-8") as f:
-                f.write(json.dumps(log_entry) + "\n")
+        os.makedirs(os.path.dirname(LOG_SLIDER_CHANGES_TEMPORARY), exist_ok=True)
+        with open(file_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(log_entry) + "\n")
+        return True
+    
+
+def log_close_app():
+    log_entry = {
+        "timestamp": datetime.datetime.now().isoformat(),
+        "event": "close app",
+    }
+    with open(ALL_LOGS, "a", encoding="utf-8") as f:
+        f.write(json.dumps(log_entry) + "\n")

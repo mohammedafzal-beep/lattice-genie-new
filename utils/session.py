@@ -22,7 +22,7 @@ def init_state():
 
 def reset_home_flag(mode):
     if st.session_state.go_home:
-        log_event(page,mode)
+        log_event("Home",mode)
 
         st.session_state.current_page = "Home"
         st.session_state.go_home = False

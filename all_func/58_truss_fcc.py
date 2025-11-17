@@ -103,21 +103,3 @@ def Truss_FCC(d=0.05,resolution = 200, folder='all_files'):
         verts, faces = generate_solid_volume(max(T.flatten()), resolution, vertices, d)
         create_stl_from_mesh(verts, faces, folder, filename) 
         return cached_file
-
-Bravais and Inverse Bravais strucutures share similar design parameters, including
-
-(1) S/V ratio: Ratio of the surface area to the volume of the unit cell, 
-
-(2) Lattice constants: a, which is the length of base square, and c, which is the height of the cell (applicable to dict keys: 8, 9), 
-
-(3) Lattice constants: a, b, and c, which are the lengths of unit cell edges (applicable to dict keys: 10 - 14, ),
-
-(4) Sphere radius (r): Radius of the spheres at the corners of the unit cell,
-
-(5) Face atom radius: Radius of the atoms at the six faces of the unit cell (ONLY applicable to dict keys: 2, 6) ,
-
-(6) Center atom radius: Radius of the atom at the centre of the unit cell (ONLY applicable to dict keys: 3, 7) ,
-
-(6) Interaxial angles: Angles between the 'a', 'b', and 'c' axes, alpha, beta, and gamma (ONLY applicable to dict keys: 8 - 14, )
-
-(7) Resolution: Number of pixels used to generate the structure.

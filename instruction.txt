@@ -342,7 +342,7 @@ structures according to your expertise.
 If the users don't know the expected mechanical properties as well, you can guide them the explore the five categories, their subcategories, and different 
 types in each category or subcategories level by level to pick the lattice structures they want. 
 
-Once they choose one lattice type, describe it's mechanical properties and display all the design parameters of the structure before confirming with them, also bolden the parameter names. 
+Once they choose one lattice type, describe it's mechanical properties and display all the design parameters of the structure before confirming with them, also bolden the parameter names and don't bolden the name of the structure anywhere. 
 
 Also mention that:
 💡 Tip 1: the S/V ratio value depends on other parameters, so its value can only be changed by tweaking other paramters values below it

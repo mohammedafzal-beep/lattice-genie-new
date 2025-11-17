@@ -21,9 +21,18 @@ from streamlit_stl import stl_from_file
 import streamlit.components.v1 as components
 import json
 from openai import OpenAI
-
+import datetime
 from stl import mesh
 import numpy as np
+
+def clear_temporary_log():
+    src_path = '.logs/log_slider_changes_temporary.jsonl'
+        # Read the existing content (if any)
+    with open(src_path, 'r', encoding='utf-8') as src_file:
+        content = src_file.read()
+
+    # Clear the original file
+    open(src_path, 'w').close()
 
 # --- Delete all STL files in the 'all_files/' directory to ensure a clean state before generation ---
 def cleanup_stl_files():
@@ -32,6 +41,13 @@ def cleanup_stl_files():
             os.remove(f)
         except Exception as e:
             print(f"Could not delete {f}: {e}")
+    log_entry = {
+        "timestamp": datetime.datetime.now().isoformat(),
+        "event": "close app",
+    }
+    with open('.logs/all_logs.jsonl', "a", encoding="utf-8") as f:
+        f.write(json.dumps(log_entry) + "\n")
+    clear_temporary_log()
 
 # --- Display a fallback image if STL rendering fails ---
 def backup(display, img_path):
@@ -141,7 +157,7 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
       "t_range_func_C34": t_range_func_C34,
       "t_range_func_C35": t_range_func_C35,
       "body_atom_radius_range": body_atom_radius_range,
-      "face_atom_radius_range": face_atom_radius_range
+      "face_atom_radius_range": face_atom_radius_range,
   }
 
   # Units for each param
@@ -165,7 +181,7 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
   "d": "Distance between sheets d",
   "r": "Atomic radius r",
   "center_atom_radius": "Center atom radius",
-    "resolution": "Mesh resolution"
+  "resolution": "Mesh resolution",
 }
 
 
@@ -184,7 +200,6 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
       'face_atom_radius': 'Radius of atoms at face centers in FCC',
       'centre_atom_radius': 'Radius of center atom in BCC',
       'resolution': 'Number of pixels used',
-      'S/V_ratio': 'Surface Area to Volume Ratio'
   }
 
 
@@ -214,14 +229,11 @@ def labeled_slider(param_key, cfg, current_params,dict_key=None,font_size_label=
       max_val = cfg.get("max")
       step = cfg.get("step", 0.01)
 
-
-
-
   default_val = cfg.get("default", min_val)
   prev_val = st.session_state.get(param_key, current_params.get(param_key, default_val))
   clamped_val = max(cfg.get("min", 0), min(prev_val, cfg.get("max", 1)))
   st.session_state[param_key] = clamped_val  # store current value
- # CHANGES START FROM HERE###
+  
   html_code = """
 <style>
 .slider-container {{

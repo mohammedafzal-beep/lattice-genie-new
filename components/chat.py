@@ -234,7 +234,7 @@ def process_assistant_response(assistant_msg, data):
         except json.JSONDecodeError:
             pass
     if confirmed:
-      return "⬅️ Adjust parameters in the sidebar, before generating the STL file"
+      return "⬅️ Adjust parameters in the sidebar"
     else:
       return assistant_msg
       

@@ -1,5 +1,7 @@
 import streamlit as st
 from streamlit_stl import stl_from_file
+from utils.dataloader import log_event
+import time
 def right_column():
     st.markdown('<h3 style="display: flex; align-items: center; justify-content: center; margin-top: -20px; text-align:center;">📸 Preview </h3>', unsafe_allow_html=True)
 
@@ -11,6 +13,7 @@ def right_column():
         try:
             stl_from_file(stl_path, st.session_state.get('stl_color', '#336fff'), shininess=50, auto_rotate=True, width=500, height=300, 
                           cam_distance=100*(st.session_state["current_params"]['resolution']/50), cam_h_angle=45, cam_v_angle=75)
+            
         except Exception:
             st.error('Failed to render STL preview. You may still download it using the button below if generated.')
 
@@ -19,6 +22,7 @@ def right_column():
             with open(stl_path, 'rb') as f:
                 with st.columns([1, 1, 1])[1]:
                     st.download_button('⬇️ Download STL', data=f.read(), file_name=stl_path, mime='model/stl')
+                    log_event(data,'Pro mode')
         except Exception:
             st.warning('STL file not available for download. Generate again.')
     else:

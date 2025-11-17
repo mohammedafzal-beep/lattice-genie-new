@@ -118,7 +118,7 @@ def Cubic_BCC(r,centre_radius, resolution = 50, folder='all_files'):
     filename = f"3Cubic_BCC_{r:.2f}_{centre_radius}_{resolution}.stl" 
     cached_file = os.path.join(folder, filename) 
 
-    verts, faces = generate_solid_volume(resolution, atom_positions, T, atom_radius, center_radius, a, b, c, plane_equation) 
+    verts, faces = generate_solid_volume(resolution, atom_positions, T, atom_radius, centre_radius, a, b, c, plane_equation) 
     create_stl_from_mesh(verts, faces, folder, filename) 
     cached_file = os.path.join(folder, filename) 
     return cached_file

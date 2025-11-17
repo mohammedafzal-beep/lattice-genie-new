@@ -136,3 +136,4 @@ def Cubic_FCC( r, face_atom_radius, resolution = 50, folder='all_files'):
     create_stl_from_mesh(verts, faces, folder, filename) 
     cached_file = os.path.join(folder, filename) 
     return cached_file
+    
